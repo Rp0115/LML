@@ -12,7 +12,7 @@
                     {{ __("Testing Laravel") }}
                     <p class="font-sans font-bold text-3xl text-white"">Sans</p>
                     <p class="font-mono text-blue-300 font-bold text-lg">Mono</p>
-                </div>
+                </div> 
             </div>
         </div>
     </div>
