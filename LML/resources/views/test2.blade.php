@@ -26,13 +26,13 @@
         {{-- Main Content --}}
         <main class="flex-1 p-6 lg:p-10 overflow-y-auto">
             <div class="lg:ml-16"> {{-- Add left margin to account for hamburger menu on mobile --}}
-                <h1 class="text-3xl font-bold text-gray-800">Dashboard</h1>
-                <p class="mt-2 text-gray-600">Welcome to your dashboard.</p>
+                <h1 class="text-3xl font-bold text-gray-800">Test2</h1>
+                <p class="mt-2 text-gray-600">Test2</p>
 
                 {{-- Your page content goes here --}}
-                <div class="mt-8 bg-white p-8 rounded-lg shadow-md">
+                <div class="text-white">
                     {{-- Example content --}}
-                    <p>This is where your main page content will be displayed. The sidebar will stay fixed on the left.</p>
+                    <p>Boom Boom Boooom</p>
                 </div>
             </div>
         </main>
