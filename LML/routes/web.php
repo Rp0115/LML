@@ -11,6 +11,10 @@ Route::get('/test', function () {
     return view('test');
 })->middleware(['auth', 'verified'])->name('test');
 
+Route::get('/test2', function () {
+    return view('test2');
+})->middleware(['auth', 'verified'])->name('test2');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard'); 
