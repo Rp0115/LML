@@ -35,6 +35,10 @@ Route::get('/voila', function () {
     return view('voila');
 })->middleware(['auth', 'verified'])->name('voila');
 
+Route::get('/models', function () {
+    return view('models');
+})->middleware(['auth', 'verified'])->name('models');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

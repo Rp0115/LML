@@ -22,12 +22,23 @@ body {
     padding: 8px;
     border-radius: 4px;
     transition: background-color 0.2s;
-    margin-bottom: 5rem;
+    /* --- Changes for draggability --- */
+    position: absolute; /* Allows the element to be positioned anywhere on the page */
+    cursor: grab; /* Indicates the icon can be picked up */
+    z-index: 5; /* Set a base z-index */
 }
 .desktop-icon:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.4);
 }
+
+/* Style for when an icon is being dragged */
+.desktop-icon.dragging {
+    cursor: grabbing; /* Indicates the icon is being held */
+    opacity: 0.8;
+    z-index: 10; /* Ensures the dragged icon is on top of others */
+}
+
 .desktop-icon i {
     font-size: 3rem; /* 48px */
     color: white;
@@ -62,6 +73,9 @@ body {
 .taskbar-item:hover {
     background-color: rgba(255, 255, 255, 0.15);
 }
+#time {
+    margin-right: 5px;
+}
 /* Start Menu Styling */
 #start-menu {
     position: fixed;
@@ -82,8 +96,4 @@ body {
 #start-menu.open {
     transform: translateY(0);
     opacity: 1;
-}
-
-#time {
-    margin-right: 5px;
 }

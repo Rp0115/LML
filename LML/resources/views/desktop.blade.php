@@ -17,56 +17,34 @@
 </head>
 <body class="desktop-background">
 
-    <!-- Desktop Icons Container -->
-    <div id="desktop-icons" class="p-4 flex flex-col flex-wrap content-start h-full">
-        <!-- Icon 1: This PC -->
-        <a href='{{ route('flashcards') }}' class="desktop-icon m-2">
-        <img src='{{asset("images/FlashQT.png")}}' alt="This PC">
-        <span>Flashcards</span>
-        </a>
+    <!-- Desktop Icons Container - Classes updated for absolute positioning -->
+    <div id="desktop-icons" class="relative w-full h-full">
+        
+        <!-- Desktop Icons Container -->
+        <div id="desktop-icons" class="p-4 flex flex-col flex-wrap content-start h-full">
+            <!-- Icon 1: This PC -->
+            <a href='{{ route('flashcards') }}' class="desktop-icon m-2">
+            <img src='{{asset("images/FlashQT.png")}}' alt="This PC" style="width: 48px; height: 48px; object-fit: contain;">
+            <span>Flashcards</span>
+            </a>
 
-        <!-- Icon 2: Recycle Bin -->
-        <a href='{{ route('voila') }}' class="desktop-icon m-2">
-            <img src='{{asset("images/notebook.png")}}' alt="">
-            <span>LML Notebooks</span>
-        </a>
-        <!-- Icon 3: Project Folder -->
-        <a href='{{ route('quiz') }}' class="desktop-icon m-2">
-            <img src='{{asset("images/Quiz.png")}}' alt="">
-            <span>Quiz</span>
-        </a>
-         <!-- Icon 4: Another Page Link -->
-        <a href="#" class="desktop-icon m-2">
-            <i class="fa-solid fa-file-code"></i>
-            <span>Page 2</span>
-        </a>
-    </div>
-
-    {{-- <!-- Start Menu (Initially Hidden) -->
-    <div id="start-menu" class="hidden">
-        <div class="p-4 text-white">
-            <h2 class="text-xl font-bold mb-4">Start</h2>
-            <!-- You can add start menu items here -->
-            <div class="flex flex-col space-y-2">
-                <a href="#" class="flex items-center p-2 rounded hover:bg-white/10">
-                    <i class="fa-solid fa-cog w-8 text-center"></i>
-                    <span>Settings</span>
-                </a>
-                <a href="#" class="flex items-center p-2 rounded hover:bg-white/10">
-                    <i class="fa-solid fa-image w-8 text-center"></i>
-                    <span>Pictures</span>
-                </a>
-                <a href="#" class="flex items-center p-2 rounded hover:bg-white/10">
-                    <i class="fa-solid fa-file-alt w-8 text-center"></i>
-                    <span>Documents</span>
-                </a>
-                <a href="#" class="flex items-center p-2 rounded hover:bg-white/10">
-                    <i class="fa-solid fa-power-off w-8 text-center"></i>
-                    <span>Power</span>
-                </a>
-            </div>
+            <!-- Icon 2: Recycle Bin -->
+            <a href='{{ route('voila') }}' class="desktop-icon m-2">
+                <img src='{{asset("images/notebook.png")}}' alt="" style="width: 48px; height: 48px; object-fit: contain;">
+                <span>LML Notebooks</span>
+            </a>
+            <!-- Icon 3: Project Folder -->
+            <a href='{{ route('quiz') }}' class="desktop-icon m-2">
+                <img src='{{asset("images/Quiz.png")}}' alt="" style="width: 48px; height: 48px; object-fit: contain;">
+                <span>Quiz</span>
+            </a>
+            <!-- Icon 4: Another Page Link -->
+            <a href='{{ route('models') }}' class="desktop-icon m-2">
+                <img src='{{asset("images/Models.png")}}' alt="" style ="width: 50%; height:auto">
+                <span>Models</span>
+            </a>
         </div>
-    </div> --}}
+    </div>
 
     <!-- Start Menu (Initially Hidden) -->
 <div id="start-menu" class="hidden">
@@ -143,49 +121,127 @@
 
         function updateClock() {
             const now = new Date();
-            // Format time with AM/PM
-            const timeString = now.toLocaleTimeString('en-US', {
-                hour: 'numeric',
-                minute: '2-digit',
-                hour12: true
-            });
-            // Format date
-            const dateString = now.toLocaleDateString('en-US', {
-                month: 'numeric',
-                day: 'numeric',
-                year: 'numeric'
-            });
-
+            const timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+            const dateString = now.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' });
             timeElement.textContent = timeString;
             dateElement.textContent = dateString;
         }
-
-        // Update the clock every second
         setInterval(updateClock, 1000);
-        // Initial call to display immediately
         updateClock();
 
         // --- Start Menu Functionality ---
         const startButton = document.getElementById('start-button');
         const startMenu = document.getElementById('start-menu');
-        const desktopIcons = document.getElementById('desktop-icons');
-
-        startButton.addEventListener('click', (event) => {
-            event.stopPropagation(); // Prevent click from bubbling up to the document
-            startMenu.classList.toggle('hidden');
-            startMenu.classList.toggle('open');
-        });
-
-        // Close the start menu if clicking anywhere else on the desktop
         document.addEventListener('click', (event) => {
-            // Check if the click is outside the start menu and not on the start button
-            if (!startMenu.contains(event.target) && !startButton.contains(event.target)) {
-                if (startMenu.classList.contains('open')) {
-                    startMenu.classList.add('hidden');
-                    startMenu.classList.remove('open');
-                }
+            if (startButton.contains(event.target)) {
+                event.stopPropagation();
+                startMenu.classList.toggle('hidden');
+                startMenu.classList.toggle('open');
+            } else if (startMenu.classList.contains('open') && !startMenu.contains(event.target)) {
+                startMenu.classList.add('hidden');
+                startMenu.classList.remove('open');
             }
         });
+
+        // --- Draggable Desktop Icons (NEW CODE) ---
+        function initializeDraggableIcons() {
+            const icons = document.querySelectorAll('.desktop-icon');
+            let top = 16;
+            let left = 16;
+            const iconHeight = 100;
+            const iconWidth = 100;
+            const verticalGap = 16;
+            const horizontalGap = 16;
+
+            // Set initial positions for icons in a grid
+            icons.forEach(icon => {
+                // Remove margin classes from Tailwind if they exist
+                icon.classList.remove('m-2');
+
+                icon.style.top = `${top}px`;
+                icon.style.left = `${left}px`;
+
+                top += iconHeight + verticalGap;
+                // Check if next icon would go off-screen vertically (leaving space for taskbar)
+                if (top + iconHeight > window.innerHeight - 48) { 
+                    top = 16; // Reset to top
+                    left += iconWidth + horizontalGap; // Move to next column
+                }
+                makeDraggable(icon);
+            });
+        }
+
+        function makeDraggable(element) {
+            let isDragging = false;
+            let hasDragged = false; // To distinguish a click from a drag
+            let offsetX, offsetY;
+
+            // Use mousedown to start the drag process
+            element.addEventListener('mousedown', (e) => {
+                // Prevent dragging from starting on anything but the left mouse button
+                if (e.button !== 0) return;
+
+                isDragging = true;
+                hasDragged = false; // Reset on new mousedown
+                element.classList.add('dragging');
+                
+                // Calculate the mouse's position relative to the element's top-left corner
+                offsetX = e.clientX - element.getBoundingClientRect().left;
+                offsetY = e.clientY - element.getBoundingClientRect().top;
+
+                // Add listeners to the whole document to track mouse movement everywhere
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+            });
+
+            function onMouseMove(e) {
+                if (!isDragging) return;
+                hasDragged = true; // If the mouse moves, it's a drag
+                
+                // Calculate new position of the icon
+                let newLeft = e.clientX - offsetX;
+                let newTop = e.clientY - offsetY;
+
+                // Constrain the icon's movement within the viewport
+                const taskbarHeight = 48;
+                const rightBoundary = window.innerWidth - element.offsetWidth;
+                const bottomBoundary = window.innerHeight - element.offsetHeight - taskbarHeight;
+
+                newLeft = Math.max(0, Math.min(newLeft, rightBoundary));
+                newTop = Math.max(0, Math.min(newTop, bottomBoundary));
+
+                element.style.left = `${newLeft}px`;
+                element.style.top = `${newTop}px`;
+            }
+
+            function onMouseUp() {
+                isDragging = false;
+                // Remove dragging class on mouse up
+                element.classList.remove('dragging');
+
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+            }
+            element.addEventListener('click', (e) => {
+                 e.preventDefault();
+            });
+            element.addEventListener('dblclick', (e) => {
+    // Only navigate if the icon wasn't dragged
+                if (!hasDragged) {
+                window.location.href = element.href;
+                }
+                });
+
+            // Prevent the link from being followed if the icon was dragged
+            element.addEventListener('click', (e) => {
+                if (hasDragged) {
+                    e.preventDefault();
+                }
+            });
+        }
+
+        // Initialize the draggable icons once the window has fully loaded
+        window.addEventListener('load', initializeDraggableIcons);
     </script>
 
 </body>
