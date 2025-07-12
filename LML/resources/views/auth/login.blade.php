@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href='{{ asset("css/style.css") }}'/>
+    <link rel="stylesheet" href='{{ asset("css/loginstyle.css") }}'/>
 </head>
 <body class="LoginBody">
     <x-auth-session-status class="mb-4" :status="session('status')" />

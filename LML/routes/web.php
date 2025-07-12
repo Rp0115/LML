@@ -20,8 +20,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard'); 
 
 Route::get('/flashcards', function () {
-    return view('flashcard-quiz');
-})->middleware(['auth', 'verified'])->name('flashcard-quiz');
+    return view('flashcards');
+})->middleware(['auth', 'verified'])->name('flashcards');
+
+Route::get('/quiz', function () {
+    return view('quiz');
+})->middleware(['auth', 'verified'])->name('quiz');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

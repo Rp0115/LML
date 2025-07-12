@@ -21,8 +21,11 @@
                     <x-nav-link :href="route('test2')" :active="request()->routeIs('test2')">
                         {{ __('Test2') }}
                     </x-nav-link> --}}
-                    <x-nav-link :href="route('flashcard-quiz')" :active="request()->routeIs('flashcard-quiz')">
+                    <x-nav-link :href="route('flashcards')" :active="request()->routeIs('flashcards')">
                         {{ __('Flashcards') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('quiz')" :active="request()->routeIs('quiz')">
+                        {{ __('Quiz') }}
                     </x-nav-link>
                 </div>
             </div>
