@@ -27,6 +27,9 @@
                     <x-nav-link :href="route('quiz')" :active="request()->routeIs('quiz')">
                         {{ __('Quiz') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('voila')" :active="request()->routeIs('voila')">
+                        {{ __('Jupyter') }}
+                    </x-nav-link>
                 </div>
             </div>
 
