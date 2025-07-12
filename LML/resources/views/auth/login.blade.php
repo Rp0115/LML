@@ -41,6 +41,18 @@
                 <span class="ms-2 text-sm text-gray-400">{{ __('Remember me') }}</span>
             </label>
         </div> --}}
+        <div class="newAccount">
+            <x-nav-link :href="route('register')" :active="request()->routeIs('register')" class="newAccountText">
+                {{ __('Create New Account') }}
+            </x-nav-link>
+        </div>
+
+        <div class="forgotPassword">
+            <x-nav-link :href="route('password.request')" :active="request()->routeIs('password.request')" class="forgotPasswordText">
+                {{ __('Forgot Your Password?') }}
+            </x-nav-link>
+        </div>
+        
     </form>
 </body>
 </html>

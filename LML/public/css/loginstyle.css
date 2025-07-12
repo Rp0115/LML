@@ -85,3 +85,23 @@ body {
     width: 250px;
     margin: 0 auto;
 }
+
+.newAccount {
+    margin-top: 10px;
+    justify-content: center;
+    text-align: center;
+}
+
+.newAccountText {
+    text-decoration: none;
+}
+
+.forgotPassword {
+    margin-top: 10px;
+    justify-content: center;
+    text-align: center;
+}
+
+.forgotPasswordText {
+    text-decoration: none;
+}
