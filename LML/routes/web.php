@@ -15,6 +15,10 @@ Route::get('/test2', function () {
     return view('test2');
 })->middleware(['auth', 'verified'])->name('test2');
 
+Route::get('/desktop', function () {
+    return view('desktop');
+})->middleware(['auth', 'verified'])->name('desktop');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard'); 
