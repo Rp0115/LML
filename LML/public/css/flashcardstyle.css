@@ -1,0 +1,183 @@
+/* basic styling */
+body {
+    font-family: sans-serif;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    margin: 0;
+    overflow: hidden;
+}
+
+.main-layout-container {
+    display: flex; /* This is the key: it enables the side-by-side layout */
+    width: 100%;
+    /* Optional: adds some space around the edges */
+    gap: 2rem; /* Optional: creates a nice gap between the sidebar and content */
+    box-sizing: border-box;
+}
+
+.left-sidebar-column {
+    flex: 0 0 280px;
+}
+
+.right-flashcard-column {
+    /* This column is for your flashcards */
+    flex: 1; /* This makes the column take up all the remaining horizontal space */
+    display: flex;
+}
+
+.container {
+    width: 80%;
+    max-width: 1600px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* flashcard styling */
+.flashcard-container {
+    perspective: 1000px;
+    margin-bottom: 20px;
+}
+
+#flashcard {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#flashcard.flipped {
+    transform: rotateY(180deg);
+}
+
+#flashcardInner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.front,
+.back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.back {
+    transform: rotateY(180deg);
+    background-color: #f8f9fa;
+}
+
+#term {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#definition {
+    font-size: 18px;
+}
+
+/* progress bar */
+.progress-container {
+    width: 100%;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#progressBar {
+    width: 0;
+    height: 10px;
+    background-color: #007bff;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+#progressText {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* buttons */
+.navigation-buttons,
+.difficulty-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#prevBtn,
+#nextBtn {
+    background-color: #007bff;
+    color: white;
+}
+
+#flipBtn {
+    background-color: #28a745;
+    color: white;
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.difficulty-btn {
+    flex-grow: 1;
+    margin: 0 5px;
+    background-color: #ffc107;
+    color: black;
+}
+
+/* completion message */
+#completionMessage {
+    display: none;
+    text-align: center;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#completionMessage h2 {
+    font-size: 28px;
+    color: #28a745;
+    margin-bottom: 20px;
+}
+
+#restartBtn {
+    background-color: #007bff;
+    color: white;
+}
