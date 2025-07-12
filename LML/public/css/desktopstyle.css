@@ -2,10 +2,10 @@
 body {
     font-family: "Inter", sans-serif;
     height: 100vh;
-    overflow: hidden; /* Prevents scrollbars from appearing */
-    user-select: none; /* Prevents text selection */
+    overflow: hidden;
+    user-select: none;
 }
-/* Custom wallpaper background */
+
 .desktop-background {
     background-image: url("../images/LoginBackground.jpg");
     background-size: cover;
@@ -22,6 +22,7 @@ body {
     padding: 8px;
     border-radius: 4px;
     transition: background-color 0.2s;
+    margin-bottom: 5rem;
 }
 .desktop-icon:hover {
     background-color: rgba(255, 255, 255, 0.2);
@@ -81,4 +82,8 @@ body {
 #start-menu.open {
     transform: translateY(0);
     opacity: 1;
+}
+
+#time {
+    margin-right: 5px;
 }

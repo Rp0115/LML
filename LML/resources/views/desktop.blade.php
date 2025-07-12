@@ -20,19 +20,20 @@
     <!-- Desktop Icons Container -->
     <div id="desktop-icons" class="p-4 flex flex-col flex-wrap content-start h-full">
         <!-- Icon 1: This PC -->
-        <a href="#" class="desktop-icon m-2">
-            <i class="fa-solid fa-desktop"></i>
-            <span>This PC</span>
+        <a href='{{ route('flashcards') }}' class="desktop-icon m-2">
+        <img src='{{asset("images/FlashQT.png")}}' alt="This PC">
+        <span>Flashcards</span>
         </a>
+
         <!-- Icon 2: Recycle Bin -->
-        <a href="#" class="desktop-icon m-2">
-            <i class="fa-solid fa-recycle"></i>
-            <span>Recycle Bin</span>
+        <a href='{{ route('voila') }}' class="desktop-icon m-2">
+            <img src='{{asset("images/notebook.png")}}' alt="">
+            <span>LML Notebooks</span>
         </a>
         <!-- Icon 3: Project Folder -->
-        <a href="#" class="desktop-icon m-2">
-            <i class="fa-solid fa-folder"></i>
-            <span>My Project</span>
+        <a href='{{ route('quiz') }}' class="desktop-icon m-2">
+            <img src='{{asset("images/Quiz.png")}}' alt="">
+            <span>Quiz</span>
         </a>
          <!-- Icon 4: Another Page Link -->
         <a href="#" class="desktop-icon m-2">
@@ -41,7 +42,7 @@
         </a>
     </div>
 
-    <!-- Start Menu (Initially Hidden) -->
+    {{-- <!-- Start Menu (Initially Hidden) -->
     <div id="start-menu" class="hidden">
         <div class="p-4 text-white">
             <h2 class="text-xl font-bold mb-4">Start</h2>
@@ -59,13 +60,49 @@
                     <i class="fa-solid fa-file-alt w-8 text-center"></i>
                     <span>Documents</span>
                 </a>
-                 <a href="#" class="flex items-center p-2 rounded hover:bg-white/10">
+                <a href="#" class="flex items-center p-2 rounded hover:bg-white/10">
                     <i class="fa-solid fa-power-off w-8 text-center"></i>
                     <span>Power</span>
                 </a>
             </div>
         </div>
+    </div> --}}
+
+    <!-- Start Menu (Initially Hidden) -->
+<div id="start-menu" class="hidden">
+    <div class="p-4 text-white">
+        <h2 class="text-xl font-bold mb-4">Start</h2>
+        <div class="flex flex-col space-y-2">
+            <!-- Other menu items remain as links -->
+            <a href='{{ route('profile.edit') }}' class="flex items-center p-2 rounded hover:bg-white/10">
+                <i class="fa-solid fa-cog w-8 text-center"></i>
+                <span>Settings</span>
+            </a>
+
+            
+
+            <a href="#" class="flex items-center p-2 rounded hover:bg-white/10">
+                <i class="fa-solid fa-image w-8 text-center"></i>
+                <span>Pictures</span>
+            </a>
+            <a href="#" class="flex items-center p-2 rounded hover:bg-white/10">
+                <i class="fa-solid fa-file-alt w-8 text-center"></i>
+                <span>Documents</span>
+            </a>
+
+            <!-- START: Sign-out button -->
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="w-full flex items-center p-2 rounded hover:bg-white/10 text-left">
+                    <i class="fa-solid fa-power-off w-8 text-center"></i>
+                    <span>Power</span>
+                </button>
+            </form>
+            <!-- END: Sign-out button -->
+
+        </div>
     </div>
+</div>
 
 
     <!-- Taskbar -->
