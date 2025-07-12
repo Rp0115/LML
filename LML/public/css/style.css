@@ -1,0 +1,87 @@
+/* .LoginBody { */
+/* background-image: url("../images/LoginBackground.jpg"); */
+/* background-repeat: no-repeat; */
+/* background-size: 100vw; Used Co-pilot for background-size to figure out cover */
+/* overflow: hidden; */
+/* } */
+
+body {
+    /* Used Gemini for background-size to figure out cover*/
+    background-image: url("../images/LoginBackground.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.pfp {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 150px;
+    height: 150px;
+    margin: 150px auto 0 auto;
+}
+
+.LoginName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+    margin: 20px auto;
+    font-size: 24px;
+    font-family: monospace;
+    color: #fff;
+}
+
+.white {
+    color: white;
+}
+
+.input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loginBox:focus {
+    background: white;
+    outline: none;
+}
+.loginBox {
+    background: rgba(0, 0, 0, 0.3);
+    height: 25px;
+    width: 250px;
+    box-sizing: border-box;
+}
+
+.loginBox2 {
+    background: rgba(0, 0, 0, 0.3);
+    height: 25px;
+    width: 225px;
+    box-sizing: border-box;
+}
+
+.loginBox2:focus {
+    background: white;
+    outline: none;
+}
+
+.arrowBtn {
+    width: 25px;
+    height: 25px;
+    background: rgba(52, 89, 123);
+    position: absolute;
+    background-image: url("../images/arrow.png");
+    background-size: cover;
+}
+
+.passwordBox {
+    position: relative;
+    height: 25px;
+    width: 250px;
+    margin: 0 auto;
+}
