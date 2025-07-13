@@ -2,6 +2,15 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NoteController;
+
+Route::middleware('auth')->group(function () {
+    // ... other authenticated routes like /profile
+
+    // ✅ Paste your note routes here
+    Route::get('/notes/{id}', [NoteController::class, 'show'])->name('notes.show');
+    Route::post('/notes', [NoteController::class, 'store'])->name('notes.store');
+});
 
 Route::get('/', function () {
     return view('welcome');
