@@ -39,7 +39,7 @@
         
         .window-btn {
             width: 30px;
-            height: 25px;
+            height: 30px;
             /* border-radius: 4px; */
             border: none;
             display: flex;
@@ -142,9 +142,11 @@
 <body>
     <div class="title-bar">
         <div class="app-title"></div>
-        <div class="window-controls">
-            <button class="window-btn close-btn" title="Close">×</button>
-        </div>
+            <div class="window-controls">
+                <a href="{{ route('desktop') }}">
+                    <button class="window-btn close-btn" title="Close">×</button>
+                </a>
+            </div>
     </div>
     
     <h1>Machine Learning Topics</h1>
@@ -152,7 +154,7 @@
     <div class="container">
         
         <div class="box">
-            <a href="/linearReg.">
+            <a href="{{ route('linearReg') }}">
                 <div style="margin-bottom: 20px;">Linear Regression</div>
                 <img src="/images/linear.gif" width="200" height="200">
             </a>

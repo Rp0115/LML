@@ -1,8 +1,15 @@
 <x-app-layout>
     <link rel="stylesheet" href='{{asset("css/quizstyle.css")}}'>
     
+    
     <div class="quiz-wrapper">
+            <div class="window-controls">
+                <a href="{{ route('desktop') }}">
+                    <button class="window-btn close-btn" title="Close">×</button>
+                </a>
+            </div>
         <div id="quiz-container">
+            
             <div id="question-container">
                 <div id="question-header">Question <span id="question-number">1</span> of 10</div>
                 <p id="question-text">This is where the question will go.</p>
@@ -20,6 +27,6 @@
             </div>
         </div>
     </div>
-
+</div>
     <script src='{{ asset("js/quizscript.js") }}'></script>
 </x-app-layout>

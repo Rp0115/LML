@@ -26,7 +26,7 @@
    
    .window-btn {
        width: 30px;
-       height: 25px;
+        height: 30px;
        /* border-radius: 4px; */
        border: none;
        display: flex;

@@ -19,13 +19,12 @@
             min-height: 100vh;
         }
   
-        /* Title bar styling */
         .title-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             /* background: rgba(223, 223, 223, 0.5);*/
-            padding: 5px 10px;
+            padding: 10px 10px;
             /* border-radius: 8px 8px 0 0;
             border: 1px solid #e0e0e0;
             border-bottom: none; */ 
@@ -46,7 +45,7 @@
         
         .window-btn {
             width: 30px;
-            height: 25px;
+            height: 30px;
             /* border-radius: 4px; */
             border: none;
             display: flex;
@@ -153,9 +152,11 @@
 <body>
     <div class="title-bar">
         <div class="app-title"></div>
-        <div class="window-controls">
-            <button class="window-btn close-btn" title="Close">×</button>
-        </div>
+            <div class="window-controls">
+                <a href="{{ route('desktop') }}">
+                    <button class="window-btn close-btn" title="Close">×</button>
+                </a>
+            </div>
     </div>
     
     <div class="app-container">
