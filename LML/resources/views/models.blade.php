@@ -8,6 +8,17 @@
   
 </head>
 <body>
+    <div class="title-bar">
+        <div class="title-bar-page-name">
+            Machine Learning Topics
+        </div>
+        <a href='{{ route('desktop') }}' style="text-decoration: none;">
+            <button class="title-bar-close-btn">
+                &times;
+            </button>
+        </a>
+    </div>
+    
     <h1 style="font-size: 50px";>Machine Learning Topics</h1>
 
     <div class="container">
@@ -42,11 +53,6 @@
                 <img src = "/images/neural.gif" width="200" height="200">
             </a>
         </div>
-    </div>
-    <div class="button-wrapper">
-        <a href="{{ route('desktop') }}">
-            <x-primary-button>{{ __('Go Back') }}</x-primary-button>
-        </a>
     </div>
 </body>
 </html>
