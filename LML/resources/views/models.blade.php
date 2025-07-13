@@ -13,7 +13,7 @@
     <div class="container">
         <!-- Box 1 -->
         <div class="box">
-            <a href="page1.html">
+            <a href='{{ route('linearReg') }}'>
                 <div style="margin-bottom: 20px;">Linear Regression</div>
                 <img src = "/images/linear.gif"  width="200" height="200">
             </a>

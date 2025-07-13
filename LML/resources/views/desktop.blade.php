@@ -114,7 +114,7 @@
         </div>
     </div>
 
-    <script>
+    {{-- <script>
         // --- Clock and Date Functionality ---
         const timeElement = document.getElementById('time');
         const dateElement = document.getElementById('date');
@@ -240,6 +240,150 @@
             });
         }
 
+        // Initialize the draggable icons once the window has fully loaded
+        window.addEventListener('load', initializeDraggableIcons);
+    </script> --}}
+
+    <script>
+        // --- Clock and Date Functionality ---
+        const timeElement = document.getElementById('time');
+        const dateElement = document.getElementById('date');
+    
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+            const dateString = now.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' });
+            timeElement.textContent = timeString;
+            dateElement.textContent = dateString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    
+        // --- Start Menu Functionality ---
+        const startButton = document.getElementById('start-button');
+        const startMenu = document.getElementById('start-menu');
+        document.addEventListener('click', (event) => {
+            if (startButton.contains(event.target)) {
+                event.stopPropagation();
+                startMenu.classList.toggle('hidden');
+                startMenu.classList.toggle('open');
+            } else if (startMenu.classList.contains('open') && !startMenu.contains(event.target)) {
+                startMenu.classList.add('hidden');
+                startMenu.classList.remove('open');
+            }
+        });
+    
+        // --- Draggable Desktop Icons (FIXED CODE) ---
+        function initializeDraggableIcons() {
+            const icons = document.querySelectorAll('.desktop-icon');
+            let top = 16;
+            let left = 16;
+            const iconHeight = 100;
+            const iconWidth = 100;
+            const verticalGap = 16;
+            const horizontalGap = 16;
+    
+            // Set initial positions for icons in a grid
+            icons.forEach(icon => {
+                // Remove margin classes from Tailwind if they exist
+                icon.classList.remove('m-2');
+    
+                icon.style.top = `${top}px`;
+                icon.style.left = `${left}px`;
+    
+                top += iconHeight + verticalGap;
+                // Check if next icon would go off-screen vertically (leaving space for taskbar)
+                if (top + iconHeight > window.innerHeight - 48) { 
+                    top = 16; // Reset to top
+                    left += iconWidth + horizontalGap; // Move to next column
+                }
+                makeDraggable(icon);
+            });
+        }
+    
+        function makeDraggable(element) {
+            let hasDragged = false;
+    
+            element.addEventListener('mousedown', (e) => {
+                // Only drag with the left mouse button
+                if (e.button !== 0) return;
+                
+                hasDragged = false;
+                element.classList.add('dragging');
+    
+                // Calculate the mouse's initial offset from the element's top-left corner
+                const offsetX = e.clientX - element.getBoundingClientRect().left;
+                const offsetY = e.clientY - element.getBoundingClientRect().top;
+    
+                function onMouseMove(e) {
+                    hasDragged = true; // If the mouse moves, we consider it a drag
+                    
+                    // Calculate the icon's new position
+                    let newLeft = e.clientX - offsetX;
+                    let newTop = e.clientY - offsetY;
+    
+                    // Keep the icon within the viewport boundaries
+                    const taskbarHeight = 48;
+                    const rightBoundary = window.innerWidth - element.offsetWidth;
+                    const bottomBoundary = window.innerHeight - element.offsetHeight - taskbarHeight;
+    
+                    newLeft = Math.max(0, Math.min(newLeft, rightBoundary));
+                    newTop = Math.max(0, Math.min(newTop, bottomBoundary));
+    
+                    element.style.left = `${newLeft}px`;
+                    element.style.top = `${newTop}px`;
+                }
+    
+                function onMouseUp() {
+                    element.classList.remove('dragging');
+    
+                    // **The Fix**: Remove the listeners from the document to stop tracking
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+                }
+    
+                // Add listeners to the whole document to track the mouse everywhere
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+            });
+    
+            // Prevent the browser's default drag behavior, which can interfere
+            element.addEventListener('dragstart', (e) => e.preventDefault());
+    
+            // // Handle clicks vs. drags to prevent navigation after dragging
+            // element.addEventListener('click', (e) => {
+            //     if (hasDragged) {
+            //         e.preventDefault(); // Prevent following the link if it was a drag
+            //     }
+            // });
+    
+            // // Your double-click logic was fine, but this ensures it works correctly
+            // // by not having other click handlers interfere.
+            // element.addEventListener('dblclick', (e) => {
+            //     if (!hasDragged) {
+            //         if (element.href) {
+            //             window.location.href = element.href;
+            //         }
+            //     }
+            // });
+            element.addEventListener('click', (e) => {
+                 e.preventDefault();
+            });
+            element.addEventListener('dblclick', (e) => {
+            // Only navigate if the icon wasn't dragged
+                if (!hasDragged) {
+                window.location.href = element.href;
+                }
+                });
+
+            // Prevent the link from being followed if the icon was dragged
+            element.addEventListener('click', (e) => {
+                if (hasDragged) {
+                    e.preventDefault();
+                }
+            });
+        }
+    
         // Initialize the draggable icons once the window has fully loaded
         window.addEventListener('load', initializeDraggableIcons);
     </script>
