@@ -39,6 +39,10 @@ Route::get('/models', function () {
     return view('models');
 })->middleware(['auth', 'verified'])->name('models');
 
+Route::get('/linearReg', function () {
+    return view('linearReg');
+})->middleware(['auth', 'verified'])->name('linearReg');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
