@@ -179,7 +179,7 @@
             transition: background-color 0.2s;
             font-weight: 500;
         }
-
+        
         button:hover {
             background-color: #2563eb;
         }
