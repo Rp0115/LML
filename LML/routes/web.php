@@ -3,6 +3,22 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\FlashcardController;
+
+Route::get('/flashcards/{setId}', [FlashcardController::class, 'show'])
+     ->name('flashcards.show')
+     ->middleware('auth');
+
+// Route::middleware('auth')->group(function () {
+//     // ... your other routes
+
+//     Route::get('/quiz', [QuizController::class, 'show'])->name('quiz.show');
+//     Route::post('/quiz', [QuizController::class, 'store'])->name('quiz.store');
+// });
+
+Route::get('/quiz/{quizId}', [QuizController::class, 'show'])->name('quiz.show');
+Route::post('/quiz/{quizId}', [QuizController::class, 'store'])->name('quiz.store');
 
 Route::middleware('auth')->group(function () {
     // ... other authenticated routes like /profile
@@ -32,13 +48,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard'); 
 
-Route::get('/flashcards', function () {
-    return view('flashcards');
-})->middleware(['auth', 'verified'])->name('flashcards');
-
-Route::get('/quiz', function () {
-    return view('quiz');
-})->middleware(['auth', 'verified'])->name('quiz');
+// Route::get('/flashcards', function () {
+//     return view('flashcards');
+// })->middleware(['auth', 'verified'])->name('flashcards');
 
 Route::get('/voila', function () {
     return view('voila');
@@ -51,6 +63,10 @@ Route::get('/models', function () {
 Route::get('/linearReg', function () {
     return view('linearReg');
 })->middleware(['auth', 'verified'])->name('linearReg');
+
+Route::get('/logisticReg', function () {
+    return view('logisticReg');
+})->middleware(['auth', 'verified'])->name('logisticReg');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

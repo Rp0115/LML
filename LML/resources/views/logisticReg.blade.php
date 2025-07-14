@@ -362,7 +362,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Linear Regression</title>
+    <title>Logistic Regression</title>
     <style>
         /* Body and Layout */
         body {
@@ -601,12 +601,12 @@
         const pageContent = {
             intro: {
                 title: 'Introduction',
-                body: `<p class="formatted-paragraph">Linear regression is a statistical method...</p>`
+                body: `<p class="formatted-paragraph">Logistic regression is a ...</p>`
             },
             jupyter: {
                 title: 'Notebook',
                 // body: `<p class="formatted-paragraph">Here is the embedded Jupyter Notebook content...</p>`
-                body: `<iframe src={{asset("jupyter/Ch03_linreg_lab.html")}} width="100%" height="775"></iframe>`
+                body: `<iframe src={{asset("jupyter/ml-logistic-regression.html")}} width="100%" height="775"></iframe>`
             },
             flash: {
                 title: 'Flash Cards',
@@ -615,7 +615,7 @@
                         <p class="formatted-paragraph">
                             Practice your knowledge. Do these flashcards to test your understanding.
                         </p>
-                        <a href="{{ route('flashcards.show', ['setId' => 'linearReg']) }}" class="button-link">
+                        <a href="{{ route('flashcards.show', ['setId' => 'logisticReg']) }}" class="button-link">
                             Go to Flashcards
                         </a>
                     `
@@ -627,7 +627,7 @@
                             <p class="formatted-paragraph">
                                 Take the quiz
                             </p>
-                            <a href="{{ route('quiz.show', ['quizId' => 'linearReg']) }}" class="button-link">Go to Quiz</a>
+                            <a href="{{ route('quiz.show', ['quizId' => 'logisticReg']) }}" class="button-link">Go to Quiz</a>
                                 
                             </a>
                         `

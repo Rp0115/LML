@@ -32,7 +32,7 @@
         
         <!-- Box 2 -->
         <div class="box">
-            <a href="page2.html">
+            <a href='{{ route('logisticReg') }}'>
                 <div style="margin-bottom: 20px;">Logistic Regression</div>
                 <img src = "/images/logisitc.gif" width="200" height="200">
             </a>
