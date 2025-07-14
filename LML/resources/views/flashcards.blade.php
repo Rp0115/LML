@@ -560,7 +560,7 @@
     <div class="title-bar-page-name">
         FlashQ
     </div>
-    <a href='{{route('desktop')}}' style="text-decoration: none;">
+    <a href='{{route('linearReg')}}' style="text-decoration: none;">
         <button class="title-bar-close-btn" onclick="window.close();" aria-label="Close">
             &times;
         </button>
