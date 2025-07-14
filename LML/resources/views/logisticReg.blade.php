@@ -588,7 +588,7 @@
             </div>
     </div>
 
-<script>
+{{-- <script>
     // Your existing JavaScript code...
     // No changes are needed in the script.
     document.addEventListener('DOMContentLoaded', () => {
@@ -643,7 +643,7 @@
 
         async function loadNotes() {
             try {
-                const response = await fetch('/notes/linearReg');
+                const response = await fetch('/notes/logisticReg');
                 const data = await response.json();
                 const notesArea = document.getElementById('notes-area');
                 if (notesArea) {
@@ -669,7 +669,7 @@
                         'X-CSRF-TOKEN': csrfToken
                     },
                     body: JSON.stringify({
-                        id: 'linearReg',
+                        id: 'logisticReg',
                         content: content
                     })
                 });
@@ -719,6 +719,95 @@
             });
         });
 
+        updateView('intro');
+    });
+</script> --}}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sidebarLinks = document.querySelectorAll('.sidebar a');
+        const mainContent = document.querySelector('.main-content');
+        const pageTitleDisplay = document.getElementById('page-title-display');
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        // ✅ 1. Store the pre-loaded note content from the controller
+        let noteContent = @json($noteContent);
+
+        // This page's specific topic ID
+        const topicId = 'logisticReg';
+
+        const pageContent = {
+            intro: { title: 'Introduction', body: `<p class="formatted-paragraph">Logistic regression is a ...</p>` },
+            jupyter: { title: 'Notebook', body: `<iframe src="{{ asset('jupyter/ml-logistic-regression.html') }}" width="100%" height="775"></iframe>` },
+            flash: { title: 'Flash Cards', body: `<p>Practice your knowledge...</p><a href="{{ route('flashcards.show', ['setId' => 'logisticReg']) }}" class="button-link">Go to Flashcards</a>` },
+            quiz: { title: 'Final Quiz', body: `<p>Take the quiz...</p><a href="{{ route('quiz.show', ['quizId' => 'logisticReg']) }}" class="button-link">Go to Quiz</a>` },
+            notes: {
+                title: 'Notes for Logistic Regression',
+                body: `<textarea id="notes-area" placeholder="Start typing..."></textarea><button id="save-notes-btn">Save Notes</button>`
+            }
+        };
+        
+        // ✅ 2. The loadNotes function is now instant. No network request needed.
+        function loadNotes() {
+            const notesArea = document.getElementById('notes-area');
+            if (notesArea) {
+                // It just uses the pre-loaded data from our variable.
+                notesArea.value = noteContent;
+            }
+        }
+
+        async function saveNotes() {
+            const notesArea = document.getElementById('notes-area');
+            if (!notesArea) return;
+
+            const currentText = notesArea.value;
+            try {
+                const response = await fetch('/notes', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-CSRF-TOKEN': csrfToken },
+                    body: JSON.stringify({ id: topicId, content: currentText })
+                });
+
+                if (response.ok) {
+                    // ✅ 3. After saving, update our local variable.
+                    // This keeps the pre-loaded data in sync without another fetch.
+                    noteContent = currentText;
+                    alert('Notes saved successfully!');
+                } else {
+                    const result = await response.json();
+                    alert('Error saving notes: ' + (result.message || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Error saving notes:', error);
+                alert('Could not save notes.');
+            }
+        }
+
+        function updateView(hash) {
+            sidebarLinks.forEach(link => link.classList.remove('active'));
+            const activeLink = document.querySelector(`.sidebar a[data-content-id="${hash}"]`);
+            
+            if (activeLink) {
+                activeLink.classList.add('active');
+                const content = pageContent[hash];
+                mainContent.innerHTML = `<h1 class="water-effect">${content.title}</h1>${content.body}`;
+                pageTitleDisplay.textContent = content.title;
+
+                if (hash === 'notes') {
+                    loadNotes(); // This is now instantaneous
+                    document.getElementById('save-notes-btn').addEventListener('click', saveNotes);
+                }
+            }
+        }
+
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                updateView(event.currentTarget.dataset.contentId);
+            });
+        });
+
+        // Your default view is still 'intro'
         updateView('intro');
     });
 </script>
