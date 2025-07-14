@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NoteController;
 
+
 Route::middleware('auth')->group(function () {
     // ... other authenticated routes like /profile
 
@@ -30,7 +31,7 @@ Route::get('/desktop', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard'); 
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/flashcards', function () {
     return view('flashcards');
@@ -39,6 +40,12 @@ Route::get('/flashcards', function () {
 Route::get('/quiz', function () {
     return view('quiz');
 })->middleware(['auth', 'verified'])->name('quiz');
+
+Route::get('/notebooks', function(){
+    return view('notebooks');
+})->middleware(['auth', 'verified'])->name('notebooks');
+
+Route::post('/save-notes', [NoteController::class, 'store'])->name('notes.store');
 
 Route::get('/voila', function () {
     return view('voila');
