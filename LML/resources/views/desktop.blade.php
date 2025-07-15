@@ -43,7 +43,7 @@
                 <img src='{{asset("images/Models.png")}}' alt="" style ="width: 50%; height:auto">
                 <span>Models</span>
             </a>
-            <a href='{{ route('notebook') }}' class="desktop-icon m-2">
+            <a href='{{ route('notebooks') }}' class="desktop-icon m-2">
                 <img src='{{asset("images/Models.png")}}' alt="" style ="width: 50%; height:auto">
                 <span>Notebook</span>
             </a>

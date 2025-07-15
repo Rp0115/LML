@@ -11,7 +11,6 @@
       body {
         font-family: monospace;
       }
-
       .tab-btn.active {
         background-color: pink;
         color: #ffffff;
