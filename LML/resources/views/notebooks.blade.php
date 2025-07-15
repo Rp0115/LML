@@ -44,7 +44,7 @@
           data-target="unit1"
           class="tab-btn active w-full sm:w-auto text-lg font-medium py-3 px-6 rounded-lg transition-all duration-200 ease-in-out bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 shadow-sm"
         >
-          Linear Regression
+          Linear Regressionaosdjasjd
         </button>
         <button
           data-target="unit2"
@@ -77,7 +77,7 @@
         <textarea
           name="unit1Notes"
           id="unit1"
-          class="notepad active w-full h-96 p-4 border-none rounded-lg text-gray-800 dark:text-gray-200 bg-transparent focus:ring-2 focus:ring-indigo-500 resize-none"
+          class="notepad active w-full h-96 p-4 border-none rounded-lg text-gray-800 dark:text-gray-200 bg-transparent focus:ring-2 focus:ring-offset-pink-300 resize-none"
           placeholder="Empty"
         >
         </textarea>
@@ -85,21 +85,21 @@
         <textarea
           name="unit2Notes"
           id="unit2"
-          class="notepad w-full h-96 p-4 border-none rounded-lg text-gray-800 dark:text-gray-200 bg-transparent focus:ring-2 focus:ring-indigo-500 resize-none"
+          class="notepad w-full h-96 p-4 border-none rounded-lg text-gray-800 dark:text-gray-200 bg-transparent focus:ring-2 focus:ring-offset-pink-300 resize-none"
           placeholder="Empty"
         ></textarea>
 
         <textarea
           name="unit3Notes"
           id="unit3"
-          class="notepad w-full h-96 p-4 border-none rounded-lg text-gray-800 dark:text-gray-200 bg-transparent focus:ring-2 focus:ring-indigo-500 resize-none"
+          class="notepad w-full h-96 p-4 border-none rounded-lg text-gray-800 dark:text-gray-200 bg-transparent focus:ring-2 focus:ring-offset-pink-300 resize-none"
           placeholder="Empty"
         ></textarea>
 
         <textarea
           name="unit4Notes"
           id="unit4"
-          class="notepad w-full h-96 p-4 border-none rounded-lg text-gray-800 dark:text-gray-200 bg-transparent focus:ring-2 focus:ring-indigo-500 resize-none"
+          class="notepad w-full h-96 p-4 border-none rounded-lg text-gray-800 dark:text-gray-200 bg-transparent focus:ring-2 focus:ring-offset-pink-300 resize-none"
           placeholder="Empty"
         ></textarea>
       </div>
@@ -109,7 +109,7 @@
         <button
           type ="submit" class="w-full sm:bg-gray-900 hover:bg-pink-500 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 ease-in-out transform hover:-translate-y-1"
         >
-          <b>Submit Notes</b>
+          <b>hi</b>
         </button>
       </div>
     </div>
