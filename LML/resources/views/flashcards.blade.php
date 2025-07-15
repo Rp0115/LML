@@ -1,620 +1,60 @@
-{{-- <style>
-    /* Title bar styling */
-    body{
-        overflow: hidden;
-    }
-   .title-bar {
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
-       background: rgba(59, 130, 246, 0.3);
-       padding: 5px 10px;
-       border-radius: 8px 8px 0 0; 
-       border: 1px solid rgba(59, 130, 246);
-       border-bottom: none; */ 
-   }
-   
-   .app-title {
-       font-family: "Papyrus", fantasy;
-       font-size: 18px;
-       color: #333;
-       padding-left: 10px;
-   }
-   
-     /* Desktop-style window controls */
-   .window-controls {
-       display: flex;
-       gap: 5px;
-   }
-   
-   .window-btn {
-       width: 30px;
-       height: 25px;
-       /* border-radius: 4px; */
-       border: none;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       cursor: pointer;
-       font-size: 16px;
-       transition: all 0.2s;
-   }
-
-   .close-btn {
-       background: rgb(163, 0, 0);
-       color:white;
-   }
-   
-   .window-btn:hover {
-       filter: brightness(1.2);
-   }
-   
-   .close-btn:hover {
-       background: rgba(211, 0, 0, 0.8);
-       color: white;
-   }
-   
-
-   .main-layout-container {
-       font-family: Arial, sans-serif;
-       display: flex;
-       justify-content: center;
-       align-items: center;
-       min-height: calc(100vh - 4rem); /* Adjust for navbar */
-       background-color: rgba(243, 243, 243, 0.3);
-       padding: 2rem;
-   }
-
-   .container {
-       width: 100%;
-       max-width: 600px;
-       text-align: center;
-       background-color: rgb(212, 229, 245);
-       padding: 2rem;
-       border-radius: 0.5rem;
-       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-   }
-
-   h1 {
-       color: #3b82f6;
-       margin-bottom: 1.5rem;
-       font-size: 2rem;
-       font-weight: bold;
-   }
-
-   .flashcard-container {
-       perspective: 1000px;
-       margin-bottom: 1.5rem;
-   }
-
-   .flashcard {
-       width: 100%;
-       height: 300px;
-       position: relative;
-       transform-style: preserve-3d;
-       transition: transform 0.6s;
-       cursor: pointer;
-       margin: 0 auto;
-   }
-
-   .flashcard.flipped {
-       transform: rotateY(180deg);
-   }
-
-   .flashcard-inner {
-       position: relative;
-       width: 100%;
-       height: 100%;
-       text-align: center;
-       transition: transform 0.6s;
-       transform-style: preserve-3d;
-   }
-
-   .flashcard-front, .flashcard-back {
-       position: absolute;
-       width: 100%;
-       height: 100%;
-       backface-visibility: hidden;
-       display: flex;
-       justify-content: center;
-       align-items: center;
-       padding: 2rem;
-       box-sizing: border-box;
-       border-radius: 0.5rem;
-       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-   }
-
-   .flashcard-front {
-       background-color: #ffffff;
-       color: #1e293b;
-       border: 1px solid #e2e8f0;
-   }
-
-   .flashcard-back {
-       background-color: rgb(59, 130, 246);
-       color: white;
-       transform: rotateY(180deg);
-   }
-
-   .progress-container {
-       display: flex;
-       align-items: center;
-       gap: 0.5rem;
-       margin-bottom: 1.5rem;
-   }
-
-   .progress-bar {
-       flex-grow: 1;
-       height: 0.5rem;
-       background-color: #e2e8f0;
-       border-radius: 0.25rem;
-       overflow: hidden;
-   }
-
-   #progressBarFill {
-       height: 100%;
-       background-color: #3b82f6;
-       width: 0%;
-       transition: width 0.3s;
-   }
-
-   .progress-text {
-       font-size: 0.875rem;
-       color: #64748b;
-       min-width: 3rem;
-   }
-
-   .navigation-buttons {
-       display: flex;
-       justify-content: center;
-       gap: 0.75rem;
-       margin-top: 1.5rem;
-   }
-
-   button {
-       padding: 0.5rem 1rem;
-       border: none;
-       border-radius: 0.25rem;
-       background-color: #3b82f6;
-       color: white;
-       cursor: pointer;
-       transition: background-color 0.2s;
-       font-weight: 500;
-   }
-   
-   button:hover {
-       background-color: #2563eb;
-   }
-
-   button:disabled {
-       background-color: rgb(203, 213, 225,.3);
-
-   }
-
-   #flipBtn {
-       background-color: #10b981;
-   }
-
-   #flipBtn:hover {
-       background-color: #059669;
-   }
-
-   p {
-       font-size: 1.25rem;
-       line-height: 1.6;
-   }
-</style>
-
-
-
-<div class="main-layout-container">
-   <div class="container">
-       <h1>FlashQ</h1>
-       
-       <div class="progress-container">
-           <div class="progress-bar">
-               <div id="progressBarFill"></div>
-           </div>
-           <span class="progress-text" id="progressText">0/0</span>
-       </div>
-       
-       <div class="flashcard-container">
-           <div class="flashcard" id="flashcard">
-               <div class="flashcard-inner" id="flashcardInner">
-                   <div class="flashcard-front">
-                       <p id="term">Loading flashcards...</p>
-                   </div>
-                   <div class="flashcard-back">
-                       <p id="definition"></p>
-                   </div>
-               </div>
-           </div>
-       </div>
-       
-       <div class="navigation-buttons">
-           <button id="prevBtn" disabled>Previous</button>
-           <button id="flipBtn">Flip Card</button>
-           <button id="nextBtn" disabled>Next</button>
-       </div>
-   </div>
-</div>
-
-<script>
-   document.addEventListener('DOMContentLoaded', () => {
-       const flashcardData = [
-           {
-               "term": "Bias",
-               "definition": "The error introduced by approximating a real-world problem with a simplified model."
-           },
-           {
-               "term": "Variance",
-               "definition": "The amount that the predicted value would change if we estimated it using a different training dataset."
-           },
-           {
-               "term": "Overfitting",
-               "definition": "When a model learns the training data too well, including its noise and outliers, resulting in poor performance on new data."
-           }
-       ];
-
-       // DOM Elements
-       const flashcard = document.getElementById('flashcard');
-       const termEl = document.getElementById('term');
-       const definitionEl = document.getElementById('definition');
-       const prevBtn = document.getElementById('prevBtn');
-       const nextBtn = document.getElementById('nextBtn');
-       const flipBtn = document.getElementById('flipBtn');
-       const progressBarFill = document.getElementById('progressBarFill');
-       const progressText = document.getElementById('progressText');
-
-       // State
-       let currentCardIndex = 0;
-       let isFlipped = false;
-
-       // Initialize
-       updateCard();
-       updateProgress();
-
-       // Event Listeners
-       flashcard.addEventListener('click', flipCard);
-       flipBtn.addEventListener('click', flipCard);
-       prevBtn.addEventListener('click', showPreviousCard);
-       nextBtn.addEventListener('click', showNextCard);
-
-       // Functions
-       function updateCard() {
-           termEl.textContent = flashcardData[currentCardIndex].term;
-           definitionEl.textContent = flashcardData[currentCardIndex].definition;
-           
-           // Reset to front if flipped
-           if (isFlipped) {
-               flipCard();
-           }
-       }
-
-       function updateProgress() {
-           const progress = ((currentCardIndex + 1) / flashcardData.length) * 100;
-           progressBarFill.style.width = `${progress}%`;
-           progressText.textContent = `${currentCardIndex + 1}/${flashcardData.length}`;
-           
-           // Update button states
-           prevBtn.disabled = currentCardIndex === 0;
-           nextBtn.disabled = currentCardIndex === flashcardData.length - 1;
-       }
-
-       function flipCard() {
-           isFlipped = !isFlipped;
-           flashcard.classList.toggle('flipped', isFlipped);
-       }
-
-       function showPreviousCard() {
-           if (currentCardIndex > 0) {
-               currentCardIndex--;
-               updateCard();
-               updateProgress();
-           }
-       }
-
-       function showNextCard() {
-           if (currentCardIndex < flashcardData.length - 1) {
-               currentCardIndex++;
-               updateCard();
-               updateProgress();
-           }
-       }
-
-       sidebarLinks.forEach(link => {
-           link.addEventListener('click', (event) => {
-               event.preventDefault();
-               const contentId = event.target.dataset.contentId;
-               updateView(contentId);
-           });
-       });
-
-       
-       // document.addEventListener('keydown', (e) => {
-       //     if (e.key === 'ArrowLeft') {
-       //         showPreviousCard();
-       //     } else if (e.key === 'ArrowRight') {
-       //         showNextCard();
-       //     } else if (e.key === ' ' || e.key === 'Enter') {
-       //         flipCard();
-       //     }
-       // });
-   });
-</script> --}}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlashQ</title>
-<style>
-    /* Global and Body */
-    body {
-        overflow: hidden;
-        margin: 0; /* Ensures no default margin */
-        background-color: #f0f4f8; /* A light background for the page */
-        display: flex;
-        flex-direction: column; /* Stacks title bar on top of content */
-        min-height: 100vh;
-    }
-
-    /* ✨ Title Bar CSS from previous examples ✨ */
-    .title-bar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0.5);
-        padding: 10px 20px;
-        color: white;
-        flex-shrink: 0;
-    }
-    
-    .title-bar-page-name {
-        font-family: Arial, sans-serif;
-        font-size: 1.2em;
-        font-weight: bold;
-        background-color: rgba(255, 255, 255, 0.2);
-        padding: 8px 15px;
-        border-radius: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.4);
-    }
-
-    .title-bar-close-btn {
-        background: none;
-        border: 1px solid transparent;
-        color: white;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;
-        font-weight: bold;
-        border-radius: 6px;
-        line-height: 1;
-        transition: background-color 0.2s ease, color 0.2s ease;
-    }
-
-    .title-bar-close-btn:hover {
-        background-color: #d9534f;
-        color: #ffffff;
-    }
-
-    /* Original Page Styles (with minor adjustments) */
-    .main-layout-container {
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-grow: 1; /* Allows this section to fill remaining space */
-        background-color: rgba(243, 243, 243, 0.3);
-        padding: 2rem;
-    }
-
-    .container {
-        width: 100%;
-        max-width: 600px;
-        text-align: center;
-        background-color: rgb(212, 229, 245);
-        padding: 2rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-        color: #3b82f6;
-        margin-top: 0; /* Adjusted from margin-bottom */
-        margin-bottom: 1.5rem;
-        font-size: 2rem;
-        font-weight: bold;
-    }
-
-    .flashcard-container {
-        perspective: 1000px;
-        margin-bottom: 1.5rem;
-    }
-
-    .flashcard {
-        width: 100%;
-        height: 300px;
-        position: relative;
-        transform-style: preserve-3d;
-        transition: transform 0.6s;
-        cursor: pointer;
-        margin: 0 auto;
-    }
-
-    .flashcard.flipped {
-        transform: rotateY(180deg);
-    }
-
-    .flashcard-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        transition: transform 0.6s;
-        transform-style: preserve-3d;
-    }
-
-    .flashcard-front, .flashcard-back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        backface-visibility: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 2rem;
-        box-sizing: border-box;
-        border-radius: 0.5rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .flashcard-front {
-        background-color: #ffffff;
-        color: #1e293b;
-        border: 1px solid #e2e8f0;
-    }
-
-    .flashcard-back {
-        background-color: rgb(59, 130, 246);
-        color: white;
-        transform: rotateY(180deg);
-    }
-
-    .progress-container {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .progress-bar {
-        flex-grow: 1;
-        height: 0.5rem;
-        background-color: #e2e8f0;
-        border-radius: 0.25rem;
-        overflow: hidden;
-    }
-
-    #progressBarFill {
-        height: 100%;
-        background-color: #3b82f6;
-        width: 0%;
-        transition: width 0.3s;
-    }
-
-    .progress-text {
-        font-size: 0.875rem;
-        color: #64748b;
-        min-width: 3rem;
-    }
-
-    .navigation-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 0.75rem;
-        margin-top: 1.5rem;
-    }
-
-    button {
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 0.25rem;
-        background-color: #3b82f6;
-        color: white;
-        cursor: pointer;
-        transition: background-color 0.2s;
-        font-weight: 500;
-    }
-    
-    button:hover {
-        background-color: #2563eb;
-    }
-
-    button:disabled {
-        background-color: rgb(203, 213, 225,.3);
-    }
-
-    #flipBtn {
-        background-color: #10b981;
-    }
-
-    #flipBtn:hover {
-        background-color: #059669;
-    }
-
-    p {
-        font-size: 1.25rem;
-        line-height: 1.6;
-    }
-</style>
+    <title>Flashcards</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f7f6; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        .title-bar { display: flex; justify-content: space-between; align-items: center; background-color: rgba(0, 0, 0, 0.5); padding: 10px 20px; color: white; flex-shrink: 0; }
+        .title-bar-page-name { font-family: Arial, sans-serif; font-size: 1.2em; font-weight: bold; background-color: rgba(255, 255, 255, 0.2); padding: 8px 15px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.4); }
+        .title-bar-close-btn { background: none; border: 1px solid transparent; color: white; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; border-radius: 6px; line-height: 1; transition: background-color 0.2s ease; }
+        .title-bar-close-btn:hover { background-color: #d9534f; }
+        .page-wrapper { padding: 2rem; display: flex; justify-content: center; align-items: center; flex-grow: 1; }
+        .container { width: 100%; max-width: 600px; text-align: center; }
+        h1 { color: #3b82f6; margin-bottom: 1.5rem; font-size: 2rem; font-weight: bold; }
+        .flashcard-container { perspective: 1000px; margin-bottom: 1.5rem; }
+        .flashcard { width: 100%; height: 300px; position: relative; transform-style: preserve-3d; transition: transform 0.6s; cursor: pointer; margin: 0 auto; }
+        .flashcard.flipped { transform: rotateY(180deg); }
+        .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; justify-content: center; align-items: center; padding: 2rem; box-sizing: border-box; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-size: 1.5rem; }
+        .flashcard-front { background-color: #ffffff; color: #1e293b; border: 1px solid #e2e8f0; }
+        .flashcard-back { background-color: #3b82f6; color: white; transform: rotateY(180deg); }
+        .navigation-buttons { display: flex; justify-content: space-between; gap: 0.75rem; margin-top: 1.5rem; }
+        button { padding: 0.75rem 1.5rem; border: none; border-radius: 0.25rem; background-color: #3b82f6; color: white; cursor: pointer; transition: background-color 0.2s; font-weight: 500; font-size: 1rem; }
+        button:hover { background-color: #2563eb; }
+        button:disabled { background-color: #9ca3af; cursor: not-allowed; }
+        .progress-text { font-size: 1rem; color: #64748b; }
+    </style>
 </head>
 <body>
-
-<div class="title-bar">
-    <div class="title-bar-page-name">
-        FlashQ
+    <div class="title-bar">
+        <div class="title-bar-page-name">Flashcards</div>
+        <a href="{{ $backRoute }}" style="text-decoration: none;">
+            <button class="title-bar-close-btn" aria-label="Close">&times;</button>
+        </a>
     </div>
-    <a href='{{route('desktop')}}' style="text-decoration: none;">
-        <button class="title-bar-close-btn" onclick="window.close();" aria-label="Close">
-            &times;
-        </button>
-    </a>
-</div>
 
-<div class="main-layout-container">
-    <div class="container">
-        <h1>FlashQ</h1>
-        
-        <div class="progress-container">
-            <div class="progress-bar">
-                <div id="progressBarFill"></div>
-            </div>
-            <span class="progress-text" id="progressText">0/0</span>
-        </div>
-        
-        <div class="flashcard-container">
-            <div class="flashcard" id="flashcard">
-                <div class="flashcard-inner" id="flashcardInner">
-                    <div class="flashcard-front">
-                        <p id="term">Loading flashcards...</p>
-                    </div>
-                    <div class="flashcard-back">
-                        <p id="definition"></p>
-                    </div>
+    <div class="page-wrapper">
+        <div class="container">
+            <h1>Flashcards</h1>
+            <div class="flashcard-container">
+                <div class="flashcard" id="flashcard">
+                    <div class="flashcard-front"><p id="term">Loading...</p></div>
+                    <div class="flashcard-back"><p id="definition"></p></div>
                 </div>
             </div>
-        </div>
-        
-        <div class="navigation-buttons">
-            <button id="prevBtn" disabled>Previous</button>
-            <button id="flipBtn">Flip Card</button>
-            <button id="nextBtn" disabled>Next</button>
+            <div class="navigation-buttons">
+                <button id="prevBtn">Previous</button>
+                <span class="progress-text" id="progressText"></span>
+                <button id="nextBtn">Next</button>
+            </div>
         </div>
     </div>
-</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const flashcardData = [
-            {
-                "term": "Bias",
-                "definition": "The error introduced by approximating a real-world problem with a simplified model."
-            },
-            {
-                "term": "Variance",
-                "definition": "The amount that the predicted value would change if we estimated it using a different training dataset."
-            },
-            {
-                "term": "Overfitting",
-                "definition": "When a model learns the training data too well, including its noise and outliers, resulting in poor performance on new data."
-            }
-        ];
+        // ✅ Get flashcard data passed from the controller
+        const flashcardData = @json($flashcards);
 
         // DOM Elements
         const flashcard = document.getElementById('flashcard');
@@ -622,70 +62,50 @@
         const definitionEl = document.getElementById('definition');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-        const flipBtn = document.getElementById('flipBtn');
-        const progressBarFill = document.getElementById('progressBarFill');
         const progressText = document.getElementById('progressText');
 
         // State
         let currentCardIndex = 0;
-        let isFlipped = false;
 
-        // Initialize
-        updateCard();
-        updateProgress();
-
-        // Event Listeners
-        flashcard.addEventListener('click', flipCard);
-        flipBtn.addEventListener('click', flipCard);
-        prevBtn.addEventListener('click', showPreviousCard);
-        nextBtn.addEventListener('click', showNextCard);
-
-        // Functions
         function updateCard() {
-            termEl.textContent = flashcardData[currentCardIndex].term;
-            definitionEl.textContent = flashcardData[currentCardIndex].definition;
-            
-            if (isFlipped) {
-                // Instantly flip back to front without animation for a smoother feel
-                flashcard.style.transition = 'none';
-                flashcard.classList.remove('flipped');
-                // Restore transition for next flip
-                setTimeout(() => {
-                    flashcard.style.transition = 'transform 0.6s';
-                }, 20);
-                isFlipped = false;
+            if (flashcardData.length === 0) {
+                termEl.textContent = 'No flashcards available for this topic.';
+                prevBtn.disabled = true;
+                nextBtn.disabled = true;
+                progressText.textContent = '0/0';
+                return;
             }
-        }
 
-        function updateProgress() {
-            const progress = ((currentCardIndex + 1) / flashcardData.length) * 100;
-            progressBarFill.style.width = `${progress}%`;
-            progressText.textContent = `${currentCardIndex + 1}/${flashcardData.length}`;
+            const currentData = flashcardData[currentCardIndex];
+            termEl.textContent = currentData.term;
+            definitionEl.textContent = currentData.definition;
             
+            // Un-flip the card
+            flashcard.classList.remove('flipped');
+            
+            // Update progress and button states
+            progressText.textContent = `${currentCardIndex + 1}/${flashcardData.length}`;
             prevBtn.disabled = currentCardIndex === 0;
             nextBtn.disabled = currentCardIndex === flashcardData.length - 1;
         }
 
-        function flipCard() {
-            isFlipped = !isFlipped;
-            flashcard.classList.toggle('flipped', isFlipped);
-        }
-
-        function showPreviousCard() {
+        // Event Listeners
+        flashcard.addEventListener('click', () => flashcard.classList.toggle('flipped'));
+        prevBtn.addEventListener('click', () => {
             if (currentCardIndex > 0) {
                 currentCardIndex--;
                 updateCard();
-                updateProgress();
             }
-        }
-
-        function showNextCard() {
+        });
+        nextBtn.addEventListener('click', () => {
             if (currentCardIndex < flashcardData.length - 1) {
                 currentCardIndex++;
                 updateCard();
-                updateProgress();
             }
-        }
+        });
+
+        // Initialize first card
+        updateCard();
     });
 </script>
 </body>

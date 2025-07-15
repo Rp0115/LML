@@ -1,39 +1,36 @@
-/* .LoginBody { */
-/* background-image: url("../images/LoginBackground.jpg"); */
-/* background-repeat: no-repeat; */
-/* background-size: 100vw; Used Co-pilot for background-size to figure out cover */
-/* overflow: hidden; */
-/* } */
-
-body {
-    /* Used Gemini for background-size to figure out cover*/
+body.LoginBody {
+    /* Background Styles */
     background-image: url("../images/LoginBackground.jpg");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
     background-attachment: fixed;
     overflow: hidden;
+
+    /* ✅ Centering Styles */
+    display: flex;
+    justify-content: center; /* Horizontally centers */
+    align-items: center; /* Vertically centers */
+    min-height: 100vh; /* Ensures body is full height */
+    font-family: monospace;
+}
+
+.login-container {
+    /* This container holds all your elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 150px;
 }
 
 .pfp {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
     width: 150px;
     height: 150px;
-    margin: 150px auto 0 auto;
 }
 
 .LoginName {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
-    height: 50px;
-    margin: 20px auto;
     font-size: 24px;
-    font-family: monospace;
     color: #fff;
+    margin-top: 20px;
 }
 
 .white {

@@ -362,7 +362,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Linear Regression</title>
+    <title>Logistic Regression</title>
     <style>
         /* Body and Layout */
         body {
@@ -588,141 +588,6 @@
             </div>
     </div>
 
-{{-- <script>
-    // Your existing JavaScript code...
-    // No changes are needed in the script.
-    document.addEventListener('DOMContentLoaded', () => {
-
-        const sidebarLinks = document.querySelectorAll('.sidebar a');
-        const mainContent = document.querySelector('.main-content');
-        const pageTitleDisplay = document.getElementById('page-title-display');
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-        const pageContent = {
-            intro: {
-                title: 'Introduction',
-                body: `<p class="formatted-paragraph">Linear regression is a statistical method...</p>`
-            },
-            jupyter: {
-                title: 'Notebook',
-                // body: `<p class="formatted-paragraph">Here is the embedded Jupyter Notebook content...</p>`
-                body: `<iframe src={{asset("jupyter/Ch03_linreg_lab.html")}} width="100%" height="775"></iframe>`
-            },
-            flash: {
-                title: 'Flash Cards',
-                // body: `<p class="formatted-paragraph">Test your knowledge with these interactive flash cards!</p>`
-                body: `
-                        <p class="formatted-paragraph">
-                            Practice your knowledge. Do these flashcards to test your understanding.
-                        </p>
-                        <a href="{{ route('flashcards.show', ['setId' => 'linearReg']) }}" class="button-link">
-                            Go to Flashcards
-                        </a>
-                    `
-            },
-            quiz: {
-                title: 'Final Quiz',
-                // body: `<p class="formatted-paragraph">Ready to test your understanding? Take the final quiz.</p>`
-                body: `
-                            <p class="formatted-paragraph">
-                                Take the quiz
-                            </p>
-                            <a href="{{ route('quiz.show', ['quizId' => 'linearReg']) }}" class="button-link">Go to Quiz</a>
-                                
-                            </a>
-                        `
-            },
-            notes: {
-                title: 'My Notes',
-                body: `
-                    <textarea id="notes-area" placeholder="Start typing your notes here..."></textarea>
-                    <button id="save-notes-btn">Save Notes</button>
-                `
-            }
-        };
-
-        async function loadNotes() {
-            try {
-                const response = await fetch('/notes/linearReg');
-                const data = await response.json();
-                const notesArea = document.getElementById('notes-area');
-                if (notesArea) {
-                    notesArea.value = data.content;
-                }
-            } catch (error) {
-                console.error('Error loading notes:', error);
-                alert('Could not load notes. Check the browser console for details.');
-            }
-        }
-
-        async function saveNotes() {
-            const notesArea = document.getElementById('notes-area');
-            if (!notesArea) return;
-
-            const content = notesArea.value;
-            try {
-                const response = await fetch('/notes', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    body: JSON.stringify({
-                        id: 'linearReg',
-                        content: content
-                    })
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    alert('Notes saved successfully!');
-                } else {
-                    alert('Error saving notes: ' + (result.message || 'Unknown error'));
-                }
-            } catch (error) {
-                console.error('Error saving notes:', error);
-                alert('Could not save notes. Check the browser console and server logs.');
-            }
-        }
-
-        function updateView(hash) {
-            sidebarLinks.forEach(link => link.classList.remove('active'));
-            const activeLink = document.querySelector(`.sidebar a[data-content-id="${hash}"]`);
-            
-            if (activeLink) {
-                activeLink.classList.add('active');
-                const content = pageContent[hash];
-
-                mainContent.innerHTML = `
-                    <h1 class="water-effect">${content.title}</h1>
-                    ${content.body}
-                `;
-                pageTitleDisplay.textContent = content.title;
-
-                if (hash === 'notes') {
-                    loadNotes();
-                    const saveBtn = document.getElementById('save-notes-btn');
-                    if(saveBtn) {
-                        saveBtn.addEventListener('click', saveNotes);
-                    }
-                }
-            }
-        }
-
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-                const contentId = event.currentTarget.dataset.contentId; // Use currentTarget
-                updateView(contentId);
-            });
-        });
-
-        updateView('intro');
-    });
-</script> --}}
-
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const sidebarLinks = document.querySelectorAll('.sidebar a');
@@ -734,53 +599,24 @@
         let noteContent = @json($noteContent);
 
         // This page's specific topic ID
-        const topicId = 'linearReg';
+        const topicId = 'logisticReg';
 
         const pageContent = {
-            intro: {
-                title: 'Introduction',
-                body: `<p class="formatted-paragraph">
-                    Linear regression is a statistical method used to model the relationship between a dependent variable 
-                    and one or more independent variables by fitting a linear equation to the observed data. The core idea 
-                    is to find a straight line, known as the regression line, that best represents the data points. The primary goal 
-                    is to minimize the total error between the predicted values from the line and the actual data points. This is typically 
-                    achieved by minimizing the sum of the squared differences, often called residuals. By identifying this "best-fit" line, 
-                    linear regression allows for the prediction of future outcomes and provides clear insights into how the independent variables 
-                    influence the dependent variable. It remains a foundational algorithm in both statistics and machine learning due to its 
-                    simplicity and interpretability.
-                    </p>`
-            },
-            jupyter: {
-                title: 'Notebook',
-                // body: `<p class="formatted-paragraph">Here is the embedded Jupyter Notebook content...</p>`
-                body: `<iframe src={{asset("jupyter/Ch03_linreg_lab.html")}} width="100%" height="775"></iframe>`
-            },
-            flash: {
-                title: 'Flash Cards',
-                // body: `<p class="formatted-paragraph">Test your knowledge with these interactive flash cards!</p>`
-                body: `
-                        <p class="formatted-paragraph">
-                            Practice your knowledge. Do these flashcards to test your understanding.
-                        </p>
-                        <a href="{{ route('flashcards.show', ['setId' => 'linearReg']) }}" class="button-link">
-                            Go to Flashcards
-                        </a>
-                    `
-            },
-            quiz: {
-                title: 'Final Quiz',
-                // body: `<p class="formatted-paragraph">Ready to test your understanding? Take the final quiz.</p>`
-                body: `
-                            <p class="formatted-paragraph">
-                                Take the quiz
-                            </p>
-                            <a href="{{ route('quiz.show', ['quizId' => 'linearReg']) }}" class="button-link">Go to Quiz</a>
-                                
-                            </a>
-                        `
-            },
+            intro: { title: 'Introduction', body: `<p class="formatted-paragraph">
+                Logistic regression is a statistical method used for binary classification problems, 
+                where the goal is to predict one of two possible outcomes. The core idea is to model the probability that a 
+                given input belongs to a particular class. Unlike linear regression which fits a straight line, logistic regression uses the 
+                logistic function (or sigmoid function) to transform its output into an S-shaped curve. This ensures the output is always a 
+                probability between 0 and 1. The primary goal is to find the model parameters that maximize the likelihood of the observed data, 
+                a method known as Maximum Likelihood Estimation. By identifying the best-fitting S-curve, logistic regression can classify new data 
+                and provide clear insights into how independent variables influence the probability of the outcome, making it a foundational algorithm 
+                for classification tasks.
+                </p>` },
+            jupyter: { title: 'Notebook', body: `<iframe src="{{ asset('jupyter/ml-logistic-regression.html') }}" width="100%" height="775"></iframe>` },
+            flash: { title: 'Flash Cards', body: `<p class="formatted-paragraph">Practice your knowledge. Do these flashcards to test your understanding.</p><a href="{{ route('flashcards.show', ['setId' => 'logisticReg']) }}" class="button-link">Go to Flashcards</a>` },
+            quiz: { title: 'Final Quiz', body: `<p class="formatted-paragraph">Take the quiz</p><a href="{{ route('quiz.show', ['quizId' => 'logisticReg']) }}" class="button-link">Go to Quiz</a>` },
             notes: {
-                title: 'Notes for Linear Regression',
+                title: 'Notes for Logistic Regression',
                 body: `<textarea id="notes-area" placeholder="Start typing..."></textarea><button id="save-notes-btn">Save Notes</button>`
             }
         };
