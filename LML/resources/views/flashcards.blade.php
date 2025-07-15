@@ -1,15 +1,18 @@
 {{-- <style>
     /* Title bar styling */
+    body{
+        overflow: hidden;
+    }
    .title-bar {
        display: flex;
        justify-content: space-between;
        align-items: center;
        background: rgba(59, 130, 246, 0.3);
        padding: 5px 10px;
-       /* border-radius: 8px 8px 0 0;  */
-       /* border: 1px solid rgba(59, 130, 246); */
-       /* border-bottom: none; */ 
-   
+       border-radius: 8px 8px 0 0; 
+       border: 1px solid rgba(59, 130, 246);
+       border-bottom: none; */ 
+   }
    
    .app-title {
        font-family: "Papyrus", fantasy;
@@ -26,7 +29,7 @@
    
    .window-btn {
        width: 30px;
-        height: 30px;
+       height: 25px;
        /* border-radius: 4px; */
        border: none;
        display: flex;
@@ -53,43 +56,24 @@
    
 
    .main-layout-container {
-        background-image: url("/images/LoginBackground.jpg");
-        background-size: cover;
-        background-position: center;
-        /* background-repeat: no-repeat; */
        font-family: Arial, sans-serif;
        display: flex;
        justify-content: center;
        align-items: center;
        min-height: calc(100vh - 4rem); /* Adjust for navbar */
-       /* background-color: rgba(243, 243, 243, 0.3); */
+       background-color: rgba(243, 243, 243, 0.3);
        padding: 2rem;
    }
 
    .container {
-        width: 100%;
-        max-width: 600px;
-        text-align: center;
-        background-color: rgb(212, 229, 245);
-        padding: 2rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        position: relative; /* Add this */
-    }
-
-    /* Add these new styles */
-    .header-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1.5rem;
-    }
-
-    .window-controls {
-        position: absolute; /* Change from flex to absolute */
-        top: 15px;
-        right: 15px;
-    }
+       width: 100%;
+       max-width: 600px;
+       text-align: center;
+       background-color: rgb(212, 229, 245);
+       padding: 2rem;
+       border-radius: 0.5rem;
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   }
 
    h1 {
        color: #3b82f6;
@@ -220,14 +204,8 @@
        line-height: 1.6;
    }
 </style>
-<div class="title-bar">
-   <div class="app-title"></div>
-   <div class="window-controls">
-    <a href="{{ route('desktop') }}">
-       <button class="window-btn close-btn" title="Close">×</button>
-    </a>
-   </div>
-</div>
+
+
 
 <div class="main-layout-container">
    <div class="container">
