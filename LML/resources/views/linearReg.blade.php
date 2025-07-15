@@ -210,7 +210,7 @@
             </a>
             <a href="#" data-content-id="jupyter">
                 <span>Notebook</span>
-                <img src="{{ asset('images/notebook.png') }}" class="sidebar-icon" alt="Jupyter">
+                <img src="{{ asset('images/saturn.png') }}" class="sidebar-icon" alt="Jupyter">
             </a>
             <a href="#" data-content-id="flash">
                 <span>Flash</span>
