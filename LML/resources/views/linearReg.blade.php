@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -80,7 +80,15 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border: 1px solid #e0e0e0;
-            border-bottom: none; */ 
+            font-size: 30px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #0f0f0f;
+            padding: 15px;
+            text-decoration: none;
+            transition: background 0.3s;
         }
 
         .sidebar a:hover {
@@ -427,10 +435,9 @@
             flex-shrink: 0;
             background: rgba(223, 223, 223, 0.3);
             padding: 15px 0;
-            border-radius: 0 0 8px 8px;
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border: 1px solid #e0e0e0;
-            border-top: none;
             font-size: 30px;
         }
 
@@ -458,17 +465,18 @@
         }
 
         .sidebar a.active {
-            background: rgba(0, 102, 255, 0.6);
+            background: rgba(0, 82, 204, 0.6);
             color: #ffffff;
+            font-weight: bold;
         }
 
         /* Main Content Area Styles... */
         .main-content {
             font-family: "Papyrus", "Impact", "Chiller", "Jokerman", fantasy, cursive;
             flex: 1;
-            padding: 15px;
-            background: rgba(223, 223, 223, 0.3);
-            border-radius: 0 0 8px 8px;
+            padding: 25px;
+            background: rgba(235, 235, 235, 0.4);
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border: 1px solid #e0e0e0;
             display: flex;
@@ -495,7 +503,6 @@
             font-size: clamp(16px, 2vw, 18px);
             line-height: 1.8;
             color: #222;
-            margin: 0 0 1.5em 0;
             text-align: justify;
         }
         .main-content textarea {
@@ -545,7 +552,6 @@
     </style>
 </head>
 <body>
-
     <div class="title-bar">
         <div class="title-bar-page-name" id="page-title-display"></div>
         <a href="{{ url('/models') }}" style="text-decoration: none;">
@@ -557,11 +563,10 @@
         <div class="sidebar">
             <a href="#" data-content-id="intro">
                 <span>Intro</span>
-                {{-- <img src="{{ asset('images/intro-icon.png') }}" class="sidebar-icon" alt="Intro"> --}}
             </a>
             <a href="#" data-content-id="jupyter">
-                <span>Notebook</span>
-                <img src="{{ asset('images/notebook.png') }}" class="sidebar-icon" alt="Jupyter">
+                <span>Saturn</span>
+                <img src="{{ asset('images/saturn.png') }}" class="sidebar-icon" alt="Jupyter">
             </a>
             <a href="#" data-content-id="flash">
                 <span>Flash</span>
@@ -573,148 +578,12 @@
             </a>
             <a href="#" data-content-id="notes">
                 <span>Notes</span>
-                {{-- <img src="{{ asset('images/notes-icon.png') }}" class="sidebar-icon" alt="Notes"> --}}
             </a>
         </div>
         
         <div class="main-content">
             </div>
     </div>
-
-{{-- <script>
-    // Your existing JavaScript code...
-    // No changes are needed in the script.
-    document.addEventListener('DOMContentLoaded', () => {
-
-        const sidebarLinks = document.querySelectorAll('.sidebar a');
-        const mainContent = document.querySelector('.main-content');
-        const pageTitleDisplay = document.getElementById('page-title-display');
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-        const pageContent = {
-            intro: {
-                title: 'Introduction',
-                body: `<p class="formatted-paragraph">Linear regression is a statistical method...</p>`
-            },
-            jupyter: {
-                title: 'Notebook',
-                // body: `<p class="formatted-paragraph">Here is the embedded Jupyter Notebook content...</p>`
-                body: `<iframe src={{asset("jupyter/Ch03_linreg_lab.html")}} width="100%" height="775"></iframe>`
-            },
-            flash: {
-                title: 'Flash Cards',
-                // body: `<p class="formatted-paragraph">Test your knowledge with these interactive flash cards!</p>`
-                body: `
-                        <p class="formatted-paragraph">
-                            Practice your knowledge. Do these flashcards to test your understanding.
-                        </p>
-                        <a href="{{ route('flashcards.show', ['setId' => 'linearReg']) }}" class="button-link">
-                            Go to Flashcards
-                        </a>
-                    `
-            },
-            quiz: {
-                title: 'Final Quiz',
-                // body: `<p class="formatted-paragraph">Ready to test your understanding? Take the final quiz.</p>`
-                body: `
-                            <p class="formatted-paragraph">
-                                Take the quiz
-                            </p>
-                            <a href="{{ route('quiz.show', ['quizId' => 'linearReg']) }}" class="button-link">Go to Quiz</a>
-                                
-                            </a>
-                        `
-            },
-            notes: {
-                title: 'My Notes',
-                body: `
-                    <textarea id="notes-area" placeholder="Start typing your notes here..."></textarea>
-                    <button id="save-notes-btn">Save Notes</button>
-                `
-            }
-        };
-
-        async function loadNotes() {
-            try {
-                const response = await fetch('/notes/linearReg');
-                const data = await response.json();
-                const notesArea = document.getElementById('notes-area');
-                if (notesArea) {
-                    notesArea.value = data.content;
-                }
-            } catch (error) {
-                console.error('Error loading notes:', error);
-                alert('Could not load notes. Check the browser console for details.');
-            }
-        }
-
-        async function saveNotes() {
-            const notesArea = document.getElementById('notes-area');
-            if (!notesArea) return;
-
-            const content = notesArea.value;
-            try {
-                const response = await fetch('/notes', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    body: JSON.stringify({
-                        id: 'linearReg',
-                        content: content
-                    })
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    alert('Notes saved successfully!');
-                } else {
-                    alert('Error saving notes: ' + (result.message || 'Unknown error'));
-                }
-            } catch (error) {
-                console.error('Error saving notes:', error);
-                alert('Could not save notes. Check the browser console and server logs.');
-            }
-        }
-
-        function updateView(hash) {
-            sidebarLinks.forEach(link => link.classList.remove('active'));
-            const activeLink = document.querySelector(`.sidebar a[data-content-id="${hash}"]`);
-            
-            if (activeLink) {
-                activeLink.classList.add('active');
-                const content = pageContent[hash];
-
-                mainContent.innerHTML = `
-                    <h1 class="water-effect">${content.title}</h1>
-                    ${content.body}
-                `;
-                pageTitleDisplay.textContent = content.title;
-
-                if (hash === 'notes') {
-                    loadNotes();
-                    const saveBtn = document.getElementById('save-notes-btn');
-                    if(saveBtn) {
-                        saveBtn.addEventListener('click', saveNotes);
-                    }
-                }
-            }
-        }
-
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-                const contentId = event.currentTarget.dataset.contentId; // Use currentTarget
-                updateView(contentId);
-            });
-        });
-
-        updateView('intro');
-    });
-</script> --}}
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -723,7 +592,7 @@
         const pageTitleDisplay = document.getElementById('page-title-display');
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-        // ✅ 1. Store the pre-loaded note content from the controller
+        // 1. Store the pre-loaded note content from the controller
         let noteContent = @json($noteContent);
 
         // This page's specific topic ID
@@ -744,13 +613,11 @@
                     </p>`
             },
             jupyter: {
-                title: 'Notebook',
-                // body: `<p class="formatted-paragraph">Here is the embedded Jupyter Notebook content...</p>`
+                title: 'Saturn Notebook',
                 body: `<iframe src={{asset("jupyter/Ch03_linreg_lab.html")}} width="100%" height="775"></iframe>`
             },
             flash: {
                 title: 'Flash Cards',
-                // body: `<p class="formatted-paragraph">Test your knowledge with these interactive flash cards!</p>`
                 body: `
                         <p class="formatted-paragraph">
                             Practice your knowledge. Do these flashcards to test your understanding.
@@ -762,7 +629,6 @@
             },
             quiz: {
                 title: 'Final Quiz',
-                // body: `<p class="formatted-paragraph">Ready to test your understanding? Take the final quiz.</p>`
                 body: `
                             <p class="formatted-paragraph">
                                 Take the quiz
@@ -778,7 +644,7 @@
             }
         };
         
-        // ✅ 2. The loadNotes function is now instant. No network request needed.
+        // 2. The loadNotes function is now instant. No network request needed.
         function loadNotes() {
             const notesArea = document.getElementById('notes-area');
             if (notesArea) {
@@ -800,7 +666,7 @@
                 });
 
                 if (response.ok) {
-                    // ✅ 3. After saving, update our local variable.
+                    // 3. After saving, update our local variable.
                     // This keeps the pre-loaded data in sync without another fetch.
                     noteContent = currentText;
                     alert('Notes saved successfully!');

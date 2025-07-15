@@ -1,9 +1,3 @@
-{{--
-    /resources/views/welcome.blade.php
-
-    This is a "swipe-to-unlock" style welcome page that redirects to the login page.
-    It uses Alpine.js for interactivity and Tailwind CSS for styling.
---}}
 <!DOCTYPE html>
 <<<<<<< HEAD
 <html lang="en">
@@ -21,7 +15,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome - My App</title>
+    <title>Welcome - LML</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
@@ -100,9 +94,10 @@
             x-transition:leave-start="opacity-100 translate-y-0"
             x-transition:leave-end="opacity-0 -translate-y-full"
             class="absolute inset-0 z-10 flex flex-col justify-center items-center bg-cover-full cursor-pointer"
-            style="background-image: url('https://placehold.co/1920x1080/000000/FFFFFF?text=Welcome')"
+            {{-- style="background-image: url('https://placehold.co/1920x1080/000000/FFFFFF?text=Learning Machine Learning')" --}}
+            style="background-image: url('{{asset("images/lockscreen.jpg")}}')"
         >
-            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+            <div class="absolute inset-0 bg-black bg-opacity-40" ></div>
             <div class="relative text-center text-white z-20">
                 <h1 class="text-8xl font-bold" x-text="time"></h1>
                 <p class="text-2xl mt-2" x-text="date"></p>
