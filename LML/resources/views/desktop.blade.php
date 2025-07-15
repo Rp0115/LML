@@ -63,13 +63,16 @@
 
             
 
-            <a href="#" class="flex items-center p-2 rounded hover:bg-white/10">
-                <i class="fa-solid fa-image w-8 text-center"></i>
-                <span>Pictures</span>
+            <a href='{{ route('models') }}' class="flex items-center p-2 rounded hover:bg-white/10">
+                {{-- <i class="fa-solid fa-image w-8 text-center"></i> --}}
+                {{-- <img src='{{asset("images/Models.png")}}' alt="Custom Icon" class="w-6 h-6 mr-2 object-cover"> --}}
+                <i class="fa-solid fa-cubes w-8 text-center"></i>
+                <span>Models</span>
             </a>
-            <a href="#" class="flex items-center p-2 rounded hover:bg-white/10">
-                <i class="fa-solid fa-file-alt w-8 text-center"></i>
-                <span>Documents</span>
+            <a href='{{ route('notebook.index') }}' class="flex items-center p-2 rounded hover:bg-white/10">
+                {{-- <i class="fa-solid fa-file-alt w-8 text-center"></i> --}}
+                <i class="fa-solid fa-book-open w-8 text-center"></i>
+                <span>Notebook</span>
             </a>
 
             <!-- START: Sign-out button -->
@@ -96,10 +99,10 @@
                 <i class="fab fa-windows text-xl text-blue-400"></i>
             </button>
             <!-- Search Bar -->
-            <div class="hidden md:flex items-center bg-gray-700 h-8 ml-2 rounded-sm px-2 w-48">
+            {{-- <div class="hidden md:flex items-center bg-gray-700 h-8 ml-2 rounded-sm px-2 w-48">
                 <i class="fa-solid fa-search text-gray-400"></i>
                 <input type="text" placeholder="Type here to search" class="bg-transparent text-white placeholder-gray-400 text-sm ml-2 w-full focus:outline-none">
-            </div>
+            </div> --}}
         </div>
 
         <!-- Right side: System Tray (Time, Date) -->
@@ -108,11 +111,11 @@
                 <div id="time">12:00 PM</div>
                 <div id="date">1/1/2024</div>
             </div>
-            <div class="taskbar-item">
+            <div class="taskbar-item" onclick="alert('Reminder: Do you Flashcards and Quizzes!');" style="cursor: pointer;">
                 <i class="fa-regular fa-bell"></i>
             </div>
              <div class="w-1 h-6 bg-gray-600 rounded-full mx-1"></div>
-             <div class="taskbar-item">
+             <div class="taskbar-item" onclick="location.reload();" style="cursor: pointer;">
                 <i class="fa-solid fa-desktop"></i>
             </div>
         </div>

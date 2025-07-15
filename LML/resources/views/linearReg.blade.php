@@ -739,7 +739,16 @@
         const pageContent = {
             intro: {
                 title: 'Introduction',
-                body: `<p class="formatted-paragraph">Linear regression is a statistical method...</p>`
+                body: `<p class="formatted-paragraph">
+                    Linear regression is a statistical method used to model the relationship between a dependent variable 
+                    and one or more independent variables by fitting a linear equation to the observed data. The core idea 
+                    is to find a straight line, known as the regression line, that best represents the data points. The primary goal 
+                    is to minimize the total error between the predicted values from the line and the actual data points. This is typically 
+                    achieved by minimizing the sum of the squared differences, often called residuals. By identifying this "best-fit" line, 
+                    linear regression allows for the prediction of future outcomes and provides clear insights into how the independent variables 
+                    influence the dependent variable. It remains a foundational algorithm in both statistics and machine learning due to its 
+                    simplicity and interpretability.
+                    </p>`
             },
             jupyter: {
                 title: 'Notebook',

@@ -104,6 +104,10 @@ Route::get('/logisticReg', function () {
 
 // Route::post('/save-notes', [NoteController::class, 'store'])->name('notes.store');
 
+Route::get('/coming-soon', function () {
+    return view('under_construction');
+})->middleware('auth')->name('coming.soon');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

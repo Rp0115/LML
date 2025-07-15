@@ -40,7 +40,7 @@
         
         <!-- Box 3 -->
         <div class="box">
-            <a href="page3.html">
+            <a href='{{ route('coming.soon') }}'>
                 <div style="margin-bottom: 20px;">Decision Tree</div>
                  <img src = "/images/decision.gif" width="200" height="200">
             </a>
@@ -48,7 +48,7 @@
         
         <!-- Box 4 -->
         <div class="box">
-            <a href="page4.html">
+            <a href='{{ route('coming.soon') }}'>
                 <div style="margin-bottom: 20px;">Neural Networks</div>
                 <img src = "/images/neural.gif" width="200" height="200">
             </a>

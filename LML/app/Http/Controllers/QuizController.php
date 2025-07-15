@@ -14,23 +14,109 @@ class QuizController extends Controller
      */
     private $quizzes = [
         'linearReg' => [
-            1 => ['question' => 'What is the capital of Japan?', 'options' => ['Beijing', 'Seoul', 'Tokyo', 'Bangkok'], 'answer' => 'Tokyo'],
-            2 => ['question' => 'What does "SQL" stand for?', 'options' => ['Structured Query Language', 'Simple Question Language', 'Standard Query Logic', 'System Query Link'], 'answer' => 'Structured Query Language'],
-            3 => ['question' => 'Which planet is known as the Red Planet?', 'options' => ['Earth', 'Mars', 'Jupiter', 'Venus'], 'answer' => 'Mars'],
-            4 => ['question' => 'In what year did the first modern Olympic Games take place?', 'options' => ['1900', '1896', '1924', '1888'], 'answer' => '1896'],
-            5 => ['question' => 'What is the main component of the sun?', 'options' => ['Liquid Lava', 'Gas', 'Molten Iron', 'Rock'], 'answer' => 'Gas'],
-            6 => ['question' => 'Which of these is a programming language?', 'options' => ['HTML', 'JPEG', 'Python', 'CSS'], 'answer' => 'Python'],
-            7 => ['question' => 'What is the largest ocean on Earth?', 'options' => ['Atlantic', 'Indian', 'Arctic', 'Pacific'], 'answer' => 'Pacific'],
-            8 => ['question' => 'Who wrote the play "Romeo and Juliet"?', 'options' => ['Charles Dickens', 'William Shakespeare', 'Jane Austen', 'Mark Twain'], 'answer' => 'William Shakespeare'],
-            9 => ['question' => 'What does a compiler do?', 'options' => ['Converts source code to machine code', 'Runs the program', 'Checks for viruses', 'Designs the user interface'], 'answer' => 'Converts source code to machine code'],
-            10 => ['question' => 'What is the value of `x` after `x = 5; x++;`?', 'options' => ['5', '6', '4', 'Undefined'], 'answer' => '6']
+            1 => [
+                'question' => 'Linear Regression is best suited for predicting what kind of values?', 
+                'options' => ['Categorical', 'Continuous', 'Discrete', 'Boolean'], 
+                'answer' => 'Continuous'
+            ],
+            2 => [
+                'question' => 'The primary goal of linear regression is to minimize the...', 
+                'options' => ['Number of data points', 'Correlation coefficient', 'Sum of squared residuals', 'Number of variables'], 
+                'answer' => 'Sum of squared residuals'
+            ],
+            3 => [
+                'question' => 'In the equation Y = mX + b, what does "b" represent?', 
+                'options' => ['The slope', 'The Y-intercept', 'The independent variable', 'The prediction error'], 
+                'answer' => 'The Y-intercept'
+            ],
+            4 => [
+                'question' => 'What does a high R-squared (R²) value indicate?', 
+                'options' => ['A strong, positive correlation', 'The model explains a large portion of the variance', 'The model is overfit', 'The relationship is not linear'], 
+                'answer' => 'The model explains a large portion of the variance'
+            ],
+            5 => [
+                'question' => 'The difference between an observed value and the value predicted by the regression line is called a...', 
+                'options' => ['Variable', 'P-value', 'Standard deviation', 'Residual'], 
+                'answer' => 'Residual'
+            ],
+            6 => [
+                'question' => 'What optimization algorithm is commonly used to find the best-fit line in linear regression?', 
+                'options' => ['K-Means Clustering', 'Decision Tree', 'Gradient Descent', 'Support Vector Machine'], 
+                'answer' => 'Gradient Descent'
+            ],
+            7 => [
+                'question' => 'A linear regression model with two or more independent variables is known as...', 
+                'options' => ['Simple Linear Regression', 'Polynomial Regression', 'Multiple Linear Regression', 'Logistic Regression'], 
+                'answer' => 'Multiple Linear Regression'
+            ],
+            8 => [
+                'question' => 'What is a core assumption of linear regression?', 
+                'options' => ['The variables must be categorical', 'A linear relationship exists between variables', 'The data must contain outliers', 'All variables must be independent of each other'], 
+                'answer' => 'A linear relationship exists between variables'
+            ],
+            9 => [
+                'question' => 'In the context of gradient descent, what is the "learning rate"?', 
+                'options' => ['The speed of the computer', 'The number of correct predictions', 'The size of the steps taken towards the minimum', 'The total number of data points'], 
+                'answer' => 'The size of the steps taken towards the minimum'
+            ],
+            10 => [
+                'question' => 'When two or more independent variables are highly correlated, this problem is known as...', 
+                'options' => ['Homoscedasticity', 'Autocorrelation', 'Overfitting', 'Multicollinearity'], 
+                'answer' => 'Multicollinearity'
+            ],
         ],
         // ✅ New set of questions for Logistic Regression
         'logisticReg' => [
-            1 => ['question' => 'Logistic Regression is primarily used for what type of problem?', 'options' => ['Regression', 'Clustering', 'Classification', 'Dimensionality Reduction'], 'answer' => 'Classification'],
-            2 => ['question' => 'The output of a logistic regression model is a value between...?', 'options' => ['0 and 1', '-1 and 1', '0 and 100', 'Any real number'], 'answer' => '0 and 1'],
-            3 => ['question' => 'What is the name of the S-shaped curve used in logistic regression?', 'options' => ['Hyperbola', 'Parabola', 'Sine Wave', 'Sigmoid Function'], 'answer' => 'Sigmoid Function'],
-            // ... add more logistic regression questions
+            1 => [
+                'question' => 'Logistic Regression is primarily used for what type of problem?', 
+                'options' => ['Regression', 'Clustering', 'Classification', 'Dimensionality Reduction'], 
+                'answer' => 'Classification'
+            ],
+            2 => [
+                'question' => 'The output of a logistic regression model typically represents a...?', 
+                'options' => ['Continuous value', 'Probability', 'Cluster ID', 'Squared error'], 
+                'answer' => 'Probability'
+            ],
+            3 => [
+                'question' => 'What is the name of the S-shaped curve used in logistic regression?', 
+                'options' => ['Hyperbola', 'Parabola', 'Sine Wave', 'Sigmoid Function'], 
+                'answer' => 'Sigmoid Function'
+            ],
+            4 => [
+                'question' => 'A decision boundary in logistic regression...', 
+                'options' => ['Connects the data points', 'Measures the error', 'Separates the different classes', 'Is always a straight line'], 
+                'answer' => 'Separates the different classes'
+            ],
+            5 => [
+                'question' => 'Which cost function is most commonly used for training a logistic regression model?', 
+                'options' => ['Mean Squared Error', 'Root Mean Squared Error', 'Log Loss (Cross-Entropy)', 'Mean Absolute Error'], 
+                'answer' => 'Log Loss (Cross-Entropy)'
+            ],
+            6 => [
+                'question' => 'If a model correctly identifies all actual positive cases, it has a high...', 
+                'options' => ['Precision', 'Accuracy', 'Recall', 'F1-Score'], 
+                'answer' => 'Recall'
+            ],
+            7 => [
+                'question' => 'What is the term for a prediction task with only two possible outcomes, like "Yes" or "No"?', 
+                'options' => ['Multinomial Classification', 'Linear Regression', 'Clustering', 'Binary Classification'], 
+                'answer' => 'Binary Classification'
+            ],
+            8 => [
+                'question' => 'Adding a penalty term to the cost function to prevent overfitting is known as...', 
+                'options' => ['Gradient Descent', 'Regularization', 'Normalization', 'Standardization'], 
+                'answer' => 'Regularization'
+            ],
+            9 => [
+                'question' => 'The natural logarithm of the odds is also known as the...', 
+                'options' => ['Logit function', 'Likelihood', 'P-value', 'Residual'], 
+                'answer' => 'Logit function'
+            ],
+            10 => [
+                'question' => 'If your model has high precision but low recall, what is likely happening?', 
+                'options' => ['It correctly predicts most positives', 'It predicts positives very accurately, but misses many', 'It is perfectly balanced', 'It has high accuracy'], 
+                'answer' => 'It predicts positives very accurately, but misses many'
+            ],
         ]
     ];
 
