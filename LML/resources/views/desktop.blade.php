@@ -17,7 +17,7 @@
 </head>
 <body class="desktop-background">
 
-    <!-- Desktop Icons Container - Classes updated for absolute positioning -->
+    <!-- Desktop Icons Container -->
     <div id="desktop-icons" class="relative w-full h-full">
         
         <!-- Desktop Icons Container -->
@@ -78,11 +78,6 @@
             <button id="start-button" class="taskbar-item" aria-label="Start Menu">
                 <i class="fab fa-windows text-xl text-blue-400"></i>
             </button>
-            <!-- Search Bar -->
-            {{-- <div class="hidden md:flex items-center bg-gray-700 h-8 ml-2 rounded-sm px-2 w-48">
-                <i class="fa-solid fa-search text-gray-400"></i>
-                <input type="text" placeholder="Type here to search" class="bg-transparent text-white placeholder-gray-400 text-sm ml-2 w-full focus:outline-none">
-            </div> --}}
         </div>
 
         <!-- Right side: System Tray (Time, Date) -->
@@ -206,7 +201,7 @@
     
             // Prevent the browser's default drag behavior, which can interfere
             element.addEventListener('dragstart', (e) => e.preventDefault());
-            
+
             element.addEventListener('click', (e) => {
                  e.preventDefault();
             });

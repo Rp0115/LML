@@ -2,7 +2,7 @@ const tabContainer = document.getElementById("units");
 const tabButtons = tabContainer.querySelectorAll(".tab-btn");
 const notepads = document.querySelectorAll(".notepad");
 
-const activeClasses = ["bg-blue-600", "text-white", "shadow-md"];
+const activeClasses = ["bg-pink-300", "text-white", "shadow-md"];
 const inactiveClasses = [
     "bg-white",
     "dark:bg-gray-700",

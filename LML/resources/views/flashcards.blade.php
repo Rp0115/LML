@@ -33,7 +33,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-    // ✅ Get flashcard data passed from the controller
+    // Get flashcard data passed from the controller
     const flashcardData = @json($flashcards);
 
     // DOM Elements

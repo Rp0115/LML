@@ -21,7 +21,7 @@
                 <span>Intro</span>
             </a>
             <a href="#" data-content-id="jupyter">
-                <span>Notebook</span>
+                <span>Saturn</span>
                 <img src="{{ asset('images/saturn.png') }}" class="sidebar-icon" alt="Jupyter">
             </a>
             <a href="#" data-content-id="flash">
@@ -48,7 +48,7 @@
         const pageTitleDisplay = document.getElementById('page-title-display');
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-        // ✅ 1. Store the pre-loaded note content from the controller
+        // 1. Store the pre-loaded note content from the controller
         let noteContent = @json($noteContent);
 
         // This page's specific topic ID
@@ -65,7 +65,7 @@
                 and provide clear insights into how independent variables influence the probability of the outcome, making it a foundational algorithm 
                 for classification tasks.
                 </p>` },
-            jupyter: { title: 'Notebook', body: `<iframe src="{{ asset('jupyter/ml-logistic-regression.html') }}" width="100%" height="775"></iframe>` },
+            jupyter: { title: 'Saturn Notebook', body: `<iframe src="{{ asset('jupyter/ml-logistic-regression.html') }}" width="100%" height="775"></iframe>` },
             flash: { title: 'Flash Cards', body: `<p class="formatted-paragraph">Practice your knowledge. Do these flashcards to test your understanding.</p><a href="{{ route('flashcards.show', ['setId' => 'logisticReg']) }}" class="button-link">Go to Flashcards</a>` },
             quiz: { title: 'Final Quiz', body: `<p class="formatted-paragraph">Take the quiz</p><a href="{{ route('quiz.show', ['quizId' => 'logisticReg']) }}" class="button-link">Go to Quiz</a>` },
             notes: {
@@ -74,7 +74,7 @@
             }
         };
         
-        // ✅ 2. The loadNotes function is now instant. No network request needed.
+        // 2. The loadNotes function is now instant. No network request needed.
         function loadNotes() {
             const notesArea = document.getElementById('notes-area');
             if (notesArea) {
@@ -96,7 +96,7 @@
                 });
 
                 if (response.ok) {
-                    // ✅ 3. After saving, update our local variable.
+                    // 3. After saving, update our local variable.
                     // This keeps the pre-loaded data in sync without another fetch.
                     noteContent = currentText;
                     alert('Notes saved successfully!');
