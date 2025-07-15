@@ -23,21 +23,21 @@
         <!-- Desktop Icons Container -->
         <div id="desktop-icons" class="p-4 flex flex-col flex-wrap content-start h-full">
             <!-- Icon 1: This PC -->
-            <a href='{{ route('flashcards') }}' class="desktop-icon m-2">
+            {{-- <a href='{{ route('flashcards') }}' class="desktop-icon m-2">
             <img src='{{asset("images/FlashQT.png")}}' alt="This PC" style="width: 48px; height: 48px; object-fit: contain;">
             <span>Flashcards</span>
-            </a>
+            </a> --}}
 
             <!-- Icon 2: Recycle Bin -->
-            <a href='{{ route('voila') }}' class="desktop-icon m-2">
+            {{-- <a href='{{ route('voila') }}' class="desktop-icon m-2">
                 <img src='{{asset("images/notebook.png")}}' alt="" style="width: 48px; height: 48px; object-fit: contain;">
                 <span>LML Notebooks</span>
-            </a>
+            </a> --}}
             <!-- Icon 3: Project Folder -->
-            <a href='{{ route('quiz') }}' class="desktop-icon m-2">
+            {{-- <a href='{{ route('quiz') }}' class="desktop-icon m-2">
                 <img src='{{asset("images/Quiz.png")}}' alt="" style="width: 48px; height: 48px; object-fit: contain;">
                 <span>Quiz</span>
-            </a>
+            </a> --}}
             <!-- Icon 4: Another Page Link -->
             <a href='{{ route('models') }}' class="desktop-icon m-2">
                 <img src='{{asset("images/Models.png")}}' alt="" style ="width: 50%; height:auto">

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -80,7 +80,15 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border: 1px solid #e0e0e0;
-            border-bottom: none; */ 
+            font-size: 30px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #0f0f0f;
+            padding: 15px;
+            text-decoration: none;
+            transition: background 0.3s;
         }
 
         .sidebar a:hover {
@@ -354,7 +362,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Linear Regression</title>
+    <title>Logistic Regression</title>
     <style>
         /* Body and Layout */
         body {
@@ -427,10 +435,9 @@
             flex-shrink: 0;
             background: rgba(223, 223, 223, 0.3);
             padding: 15px 0;
-            border-radius: 0 0 8px 8px;
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border: 1px solid #e0e0e0;
-            border-top: none;
             font-size: 30px;
         }
 
@@ -458,17 +465,18 @@
         }
 
         .sidebar a.active {
-            background: rgba(0, 102, 255, 0.6);
+            background: rgba(0, 82, 204, 0.6);
             color: #ffffff;
+            font-weight: bold;
         }
 
         /* Main Content Area Styles... */
         .main-content {
             font-family: "Papyrus", "Impact", "Chiller", "Jokerman", fantasy, cursive;
             flex: 1;
-            padding: 15px;
-            background: rgba(223, 223, 223, 0.3);
-            border-radius: 0 0 8px 8px;
+            padding: 25px;
+            background: rgba(235, 235, 235, 0.4);
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border: 1px solid #e0e0e0;
             display: flex;
@@ -495,7 +503,6 @@
             font-size: clamp(16px, 2vw, 18px);
             line-height: 1.8;
             color: #222;
-            margin: 0 0 1.5em 0;
             text-align: justify;
         }
         .main-content textarea {
@@ -594,12 +601,12 @@
         const pageContent = {
             intro: {
                 title: 'Introduction',
-                body: `<p class="formatted-paragraph">Linear regression is a statistical method...</p>`
+                body: `<p class="formatted-paragraph">Logistic regression is a ...</p>`
             },
             jupyter: {
                 title: 'Notebook',
                 // body: `<p class="formatted-paragraph">Here is the embedded Jupyter Notebook content...</p>`
-                body: `<iframe src={{asset("jupyter/Ch03_linreg_lab.html")}} width="100%" height="775"></iframe>`
+                body: `<iframe src={{asset("jupyter/ml-logistic-regression.html")}} width="100%" height="775"></iframe>`
             },
             flash: {
                 title: 'Flash Cards',
@@ -608,7 +615,7 @@
                         <p class="formatted-paragraph">
                             Practice your knowledge. Do these flashcards to test your understanding.
                         </p>
-                        <a href="{{ route('flashcards.show', ['setId' => 'linearReg']) }}" class="button-link">
+                        <a href="{{ route('flashcards.show', ['setId' => 'logisticReg']) }}" class="button-link">
                             Go to Flashcards
                         </a>
                     `
@@ -620,7 +627,7 @@
                             <p class="formatted-paragraph">
                                 Take the quiz
                             </p>
-                            <a href="{{ route('quiz.show', ['quizId' => 'linearReg']) }}" class="button-link">Go to Quiz</a>
+                            <a href="{{ route('quiz.show', ['quizId' => 'logisticReg']) }}" class="button-link">Go to Quiz</a>
                                 
                             </a>
                         `

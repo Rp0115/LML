@@ -140,17 +140,8 @@
     </style>
 </head>
 <body>
-    <div class="title-bar">
-        <div class="app-title"></div>
-            <div class="window-controls">
-                <a href="{{ route('desktop') }}">
-                    <button class="window-btn close-btn" title="Close">×</button>
-                </a>
-            </div>
-    </div>
-    
-    <h1>Machine Learning Topics</h1>
-    
+    <h1 style="font-size: 50px";>Machine Learning Topics</h1>
+
     <div class="container">
         
         <div class="box">
@@ -161,7 +152,7 @@
         </div>
         
         <div class="box">
-            <a href="page2.html">
+            <a href='{{ route('logisticReg') }}'>
                 <div style="margin-bottom: 20px;">Logistic Regression</div>
                 <img src="/images/logisitc.gif" width="200" height="200">
             </a>
@@ -183,18 +174,10 @@
             </a>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          
-            document.querySelector('.close-btn').addEventListener('click', function() {
-                document.body.style.opacity = '0';
-                setTimeout(() => {
-                    window.close(); 
-                    
-                }, 300);
-            });
-        });
-    </script>
+    <div class="button-wrapper">
+        <a href="{{ route('desktop') }}">
+            <x-primary-button>{{ __('Go Back') }}</x-primary-button>
+        </a>
+    </div>
 </body>
 </html>
