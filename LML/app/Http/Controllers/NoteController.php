@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; // ✅ Import the Auth facade
+use Illuminate\Support\Facades\Auth; // Import the Auth facade
 use Illuminate\Support\Facades\DB;
 
 class NoteController extends Controller
@@ -40,7 +40,7 @@ class NoteController extends Controller
         // Get the authenticated user's ID
         $userId = Auth::id();
 
-        // ✅ Add user_id to the query
+        // Add user_id to the query
         DB::table('notes')->updateOrInsert(
             [
                 'id' => $validated['id'],

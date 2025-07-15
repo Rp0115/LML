@@ -5,51 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notebook</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Minimal custom CSS needed for JS functionality */
-        .notepad { display: none; }
-        .notepad.active { display: block; }
-
-        /* ✅ Correct Title Bar CSS */
-        .title-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px 20px;
-            color: white;
-            flex-shrink: 0;
-        }
-        .title-bar-page-name {
-            font-family: Arial, sans-serif;
-            font-size: 1.2em;
-            font-weight: bold;
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 8px 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-        .title-bar-close-btn {
-            background: none;
-            border: 1px solid transparent;
-            color: white;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            font-weight: bold;
-            border-radius: 6px;
-            line-height: 1;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-        .title-bar-close-btn:hover {
-            background-color: #d9534f;
-            color: #ffffff;
-        }
-    </style>
+    <link rel="stylesheet" href="{{asset('css/notebookstyle.css')}}">
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 font-sans flex flex-col min-h-screen">
 
@@ -103,41 +59,6 @@
         </form>
     </div>
 
-    <script>
-        const tabContainer = document.getElementById("units");
-        const tabButtons = tabContainer.querySelectorAll(".tab-btn");
-        const notepads = document.querySelectorAll(".notepad");
-
-        const activeClasses = ['bg-blue-600', 'text-white', 'shadow-md'];
-        const inactiveClasses = ['bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300', 'hover:bg-gray-200', 'dark:hover:bg-gray-600'];
-
-        function switchTab(clickedButton) {
-            if (!clickedButton) return;
-            
-            const targetId = clickedButton.dataset.target;
-            const targetNotepad = document.getElementById(targetId);
-
-            tabButtons.forEach(btn => {
-                btn.classList.remove(...activeClasses);
-                btn.classList.add(...inactiveClasses);
-            });
-            clickedButton.classList.remove(...inactiveClasses);
-            clickedButton.classList.add(...activeClasses);
-
-            notepads.forEach(pad => pad.classList.remove("active"));
-            if (targetNotepad) {
-                targetNotepad.classList.add("active");
-            }
-        }
-
-        tabContainer.addEventListener("click", (e) => {
-            const clickedButton = e.target.closest(".tab-btn");
-            switchTab(clickedButton);
-        });
-
-        const firstButton = tabContainer.querySelector('.tab-btn');
-        switchTab(firstButton);
-        document.getElementById('unit1').classList.add('active');
-    </script>
+    <script src="{{asset('js/notebookscript.js')}}"></script>
 </body>
 </html>

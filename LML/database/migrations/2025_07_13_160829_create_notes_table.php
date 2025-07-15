@@ -21,7 +21,7 @@ return new class extends Migration
             // Standard created_at and updated_at columns
             $table->timestamps();
 
-            // ✅ Define a composite primary key
+            // Define a composite primary key
             $table->primary(['id', 'user_id']);
         });
     }

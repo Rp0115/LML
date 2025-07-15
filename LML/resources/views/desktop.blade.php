@@ -22,23 +22,6 @@
         
         <!-- Desktop Icons Container -->
         <div id="desktop-icons" class="p-4 flex flex-col flex-wrap content-start h-full">
-            <!-- Icon 1: This PC -->
-            {{-- <a href='{{ route('flashcards') }}' class="desktop-icon m-2">
-            <img src='{{asset("images/FlashQT.png")}}' alt="This PC" style="width: 48px; height: 48px; object-fit: contain;">
-            <span>Flashcards</span>
-            </a> --}}
-
-            <!-- Icon 2: Recycle Bin -->
-            {{-- <a href='{{ route('voila') }}' class="desktop-icon m-2">
-                <img src='{{asset("images/notebook.png")}}' alt="" style="width: 48px; height: 48px; object-fit: contain;">
-                <span>LML Notebooks</span>
-            </a> --}}
-            <!-- Icon 3: Project Folder -->
-            {{-- <a href='{{ route('quiz') }}' class="desktop-icon m-2">
-                <img src='{{asset("images/Quiz.png")}}' alt="" style="width: 48px; height: 48px; object-fit: contain;">
-                <span>Quiz</span>
-            </a> --}}
-            <!-- Icon 4: Another Page Link -->
             <a href='{{ route('models') }}' class="desktop-icon m-2">
                 <img src='{{asset("images/Models.png")}}' alt="" style ="width: 50%; height:auto">
                 <span>Models</span>
@@ -55,22 +38,19 @@
     <div class="p-4 text-white">
         <h2 class="text-xl font-bold mb-4">Start</h2>
         <div class="flex flex-col space-y-2">
+
             <!-- Other menu items remain as links -->
             <a href='{{ route('profile.edit') }}' class="flex items-center p-2 rounded hover:bg-white/10">
                 <i class="fa-solid fa-cog w-8 text-center"></i>
                 <span>Settings</span>
             </a>
 
-            
-
             <a href='{{ route('models') }}' class="flex items-center p-2 rounded hover:bg-white/10">
-                {{-- <i class="fa-solid fa-image w-8 text-center"></i> --}}
-                {{-- <img src='{{asset("images/Models.png")}}' alt="Custom Icon" class="w-6 h-6 mr-2 object-cover"> --}}
                 <i class="fa-solid fa-cubes w-8 text-center"></i>
                 <span>Models</span>
             </a>
+            
             <a href='{{ route('notebook.index') }}' class="flex items-center p-2 rounded hover:bg-white/10">
-                {{-- <i class="fa-solid fa-file-alt w-8 text-center"></i> --}}
                 <i class="fa-solid fa-book-open w-8 text-center"></i>
                 <span>Notebook</span>
             </a>
@@ -226,23 +206,7 @@
     
             // Prevent the browser's default drag behavior, which can interfere
             element.addEventListener('dragstart', (e) => e.preventDefault());
-    
-            // // Handle clicks vs. drags to prevent navigation after dragging
-            // element.addEventListener('click', (e) => {
-            //     if (hasDragged) {
-            //         e.preventDefault(); // Prevent following the link if it was a drag
-            //     }
-            // });
-    
-            // // Your double-click logic was fine, but this ensures it works correctly
-            // // by not having other click handlers interfere.
-            // element.addEventListener('dblclick', (e) => {
-            //     if (!hasDragged) {
-            //         if (element.href) {
-            //             window.location.href = element.href;
-            //         }
-            //     }
-            // });
+            
             element.addEventListener('click', (e) => {
                  e.preventDefault();
             });

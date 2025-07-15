@@ -65,7 +65,7 @@ class QuizController extends Controller
                 'answer' => 'Multicollinearity'
             ],
         ],
-        // ✅ New set of questions for Logistic Regression
+        // New set of questions for Logistic Regression
         'logisticReg' => [
             1 => [
                 'question' => 'Logistic Regression is primarily used for what type of problem?', 
